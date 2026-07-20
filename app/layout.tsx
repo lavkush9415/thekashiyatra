@@ -1,0 +1,156 @@
+import type { Metadata } from "next";
+import { Cormorant_Garamond, Inter } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { ToastProvider } from "@/components/providers/ToastProvider";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { LoadingScreen } from "@/components/ui/LoadingScreen";
+import { ScrollProgressBar, WhatsAppButton } from "@/components/ui/ScrollProgressBar";
+import { TrustBar } from "@/components/ui/TrustBar";
+import { CookieConsent } from "@/components/ui/CookieConsent";
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://kashidarshan.com"),
+  title: {
+    default: "Kashi Darshan — Experience the Soul of Kashi | Varanasi Travel & Pilgrimage",
+    template: "%s | Kashi Darshan",
+  },
+  description:
+    "Book premium hotels, sacred boat rides, temple tours, and spiritual experiences in Varanasi (Kashi). Your trusted pilgrimage partner for Ganga Aarti, Kashi Vishwanath darshan, and customized tour packages.",
+  keywords: [
+    "Varanasi travel",
+    "Kashi pilgrimage",
+    "Ganga Aarti booking",
+    "Kashi Vishwanath darshan",
+    "Varanasi hotels",
+    "boat ride Ganga",
+    "Banaras tour package",
+    "spiritual tourism India",
+    "Sarnath tour",
+    "sunrise boat ride Varanasi",
+  ],
+  authors: [{ name: "Kashi Darshan", url: "https://kashidarshan.com" }],
+  creator: "Kashi Darshan",
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://kashidarshan.com",
+    siteName: "Kashi Darshan",
+    title: "Kashi Darshan — Experience the Soul of Kashi",
+    description:
+      "Premium travel and pilgrimage booking for Varanasi. Hotels, Boat Rides, Temple Tours, Packages & more.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Kashi Darshan — Experience the Soul of Kashi",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kashi Darshan — Experience the Soul of Kashi",
+    description: "Premium Varanasi travel & pilgrimage booking. Hotels, Boats, Tours & Experiences.",
+    images: ["/og-image.jpg"],
+    creator: "@kashidarshan",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: [{ url: "/favicon.ico" }],
+    apple: [{ url: "/apple-touch-icon.png" }],
+  },
+  verification: {
+    google: "your-google-verification-code",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  name: "Kashi Darshan",
+  description: "Premium travel and pilgrimage booking service for Varanasi, India.",
+  url: "https://kashidarshan.com",
+  telephone: "+91-98765-43210",
+  email: "info@kashidarshan.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Near Kashi Vishwanath Temple, Godaulia",
+    addressLocality: "Varanasi",
+    addressRegion: "Uttar Pradesh",
+    postalCode: "221001",
+    addressCountry: "IN",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 25.3106,
+    longitude: 83.0094,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    opens: "06:00",
+    closes: "22:00",
+  },
+  sameAs: [
+    "https://facebook.com/kashidarshan",
+    "https://instagram.com/kashidarshan",
+    "https://twitter.com/kashidarshan",
+  ],
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className={`${cormorant.variable} ${inter.variable} font-sans antialiased`}>
+        <ThemeProvider>
+          <ToastProvider>
+            <LoadingScreen />
+            <ScrollProgressBar />
+            <Navbar />
+            <main>{children}</main>
+            <TrustBar />
+            <Footer />
+            <WhatsAppButton />
+            <CookieConsent />
+          </ToastProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
