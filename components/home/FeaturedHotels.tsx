@@ -10,6 +10,7 @@ import { hotels } from "@/lib/data/hotels";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { formatPrice } from "@/lib/utils";
 import { useToast } from "@/components/providers/ToastProvider";
+import { getWhatsAppUrl, hotelBookingMessage } from "@/lib/whatsapp";
 
 const amenityIcons: Record<string, React.ReactNode> = {
   "WiFi": <Wifi size={12} />,
@@ -85,15 +86,15 @@ export function FeaturedHotels() {
 
                 {/* Wishlist Button */}
                 <button
-                  onClick={(e) => { e.preventDefault(); toggleWishlist(hotel.id, hotel.name); }}
+                  onClick={(e) => { e.preventDefault(); toggleWishlist(hotel.slug, hotel.name); }}
                   className={`absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-200 hover:scale-110 ${
-                    wishlist.includes(hotel.id)
+                    wishlist.includes(hotel.slug)
                       ? "bg-red-500 text-white"
                       : "bg-white/80 text-gray-600 hover:bg-red-50 hover:text-red-500"
                   }`}
                   aria-label="Add to wishlist"
                 >
-                  <Heart size={16} className={wishlist.includes(hotel.id) ? "fill-current" : ""} />
+                  <Heart size={16} className={wishlist.includes(hotel.slug) ? "fill-current" : ""} />
                 </button>
 
                 {/* Category tag */}
@@ -141,20 +142,19 @@ export function FeaturedHotels() {
                 {/* Price + CTA */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs text-gray-400 line-through">
-                      {formatPrice(hotel.originalPrice)}
-                    </p>
                     <p className="font-bold text-[#8B4513] dark:text-amber-400 text-lg">
-                      {formatPrice(hotel.price)}
+                      {formatPrice(hotel.pricePerNight)}
                       <span className="text-xs font-normal text-gray-400">/night</span>
                     </p>
                   </div>
-                  <Link
-                    href={`/hotels/${hotel.id}`}
+                  <a
+                    href={getWhatsAppUrl(hotelBookingMessage({ hotelName: hotel.name, price: hotel.pricePerNight }))}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="px-4 py-2 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200"
                   >
                     Book Now
-                  </Link>
+                  </a>
                 </div>
               </div>
             </motion.div>

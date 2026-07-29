@@ -4,11 +4,12 @@ import { useState } from "react";
 import { X, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { getWhatsAppUrl, genericInquiryMessage } from "@/lib/whatsapp";
 
 const announcements = [
-  { text: "🎉 Dev Deepawali Special: Up to 30% off on all packages!", href: "/packages", cta: "Book Now" },
-  { text: "🚢 New luxury boat launched — Private Ganga Cruise!", href: "/boats", cta: "View Boat" },
-  { text: "🕌 Maha Shivaratri packages available — Fill up fast!", href: "/packages", cta: "Reserve Now" },
+  { text: "🎉 Dev Deepawali Special: Up to 30% off on all packages!", href: "/packages", cta: "Book Now", whatsapp: true },
+  { text: "🚢 New luxury boat launched — Private Ganga Cruise!", href: "/boats", cta: "View Boat", whatsapp: false },
+  { text: "🕌 Maha Shivaratri packages available — Fill up fast!", href: "/packages", cta: "Reserve Now", whatsapp: true },
 ];
 
 export function AnnouncementBanner() {
@@ -45,9 +46,20 @@ export function AnnouncementBanner() {
               className="flex items-center gap-2 text-center"
             >
               <span className="text-white/90">{ann.text}</span>
-              <Link href={ann.href} className="flex items-center gap-0.5 font-semibold text-amber-200 hover:text-white underline underline-offset-2 transition-colors">
-                {ann.cta} <ChevronRight size={12} />
-              </Link>
+              {ann.whatsapp ? (
+                <a
+                  href={getWhatsAppUrl(genericInquiryMessage(`this offer: ${ann.text}`))}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-0.5 font-semibold text-amber-200 hover:text-white underline underline-offset-2 transition-colors"
+                >
+                  {ann.cta} <ChevronRight size={12} />
+                </a>
+              ) : (
+                <Link href={ann.href} className="flex items-center gap-0.5 font-semibold text-amber-200 hover:text-white underline underline-offset-2 transition-colors">
+                  {ann.cta} <ChevronRight size={12} />
+                </Link>
+              )}
             </motion.div>
           </AnimatePresence>
 

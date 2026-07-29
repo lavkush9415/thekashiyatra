@@ -1,486 +1,331 @@
 export interface RoomType {
-  id: string;
-  name: string;
+  type: string;
+  roomType: string;
   price: number;
-  originalPrice?: number;
   capacity: string;
-  size?: string;
   description: string;
   images: string[];
   amenities: string[];
-  badge?: string;
+}
+
+export interface HotelPolicies {
+  checkIn: string;
+  checkOut: string;
+  cancellation: string;
+  payment: string;
+  children: string;
 }
 
 export interface NearbyAttraction {
   name: string;
   distance: string;
+  type: string;
 }
 
 export interface GuestReview {
-  id: string;
   name: string;
-  avatar: string;
+  city: string;
   rating: number;
   date: string;
   comment: string;
 }
 
+export interface Coordinates {
+  lat: number;
+  lng: number;
+}
+
 export interface Hotel {
-  id: string;
+  id: number;
+  slug: string;
   name: string;
-  location: string;
-  rating: number;
-  reviews: number;
-  price: number;
-  originalPrice: number;
+  category: string;
+  hotelType: string;
   image: string;
   images: string[];
+  rating: number;
+  reviews: number;
+  pricePerNight: number;
+  location: string;
+  coordinates: Coordinates;
   amenities: string[];
-  category: "luxury" | "premium" | "standard" | "heritage";
-  description: string;
-  highlights: string[];
-  checkIn: string;
-  checkOut: string;
   badge?: string;
+  description: string;
+  fullDescription: string;
   roomTypes: RoomType[];
+  policies: HotelPolicies;
   nearbyAttractions: NearbyAttraction[];
-  guestReviewsList: GuestReview[];
+  guestReviews: GuestReview[];
 }
 
 export const hotels: Hotel[] = [
   {
-    id: "varanasi-heritage-hotel",
-    name: "Varanasi Heritage Hotel",
+    id: 1,
+    slug: "varanasi-heritage",
+    name: "Varanasi Heritage",
+    category: "Premium",
+    hotelType: "Premium",
+    image: "/h1.jpeg",
+    images: ["/h1.jpeg", "/h2.jpeg", "/h3.jpeg", "/h4.jpeg", "/dh5.jpeg", "/dh6.jpeg"],
+    rating: 5.0,
+    reviews: 89,
+    pricePerNight: 2500,
     location: "Assi Ghat, Varanasi",
-    rating: 4.9,
-    reviews: 1248,
-    price: 2500,
-    originalPrice: 2500,
-    image: "/dh1.jpeg",
-    images: [
-      "/dh.jpeg",
-      "/dh2.jpeg",
-      "/dh3.jpeg", "/dh5.jpeg", "/dtwinh1.jpeg", "/dtwinh2.jpeg", "/dtwinh3.jpeg", "/dtwinh5.jpeg"
-    ],
-    amenities: ["Restaurant", "WiFi", "Parking"],
-    category: "luxury",
-    description: "A heritage palace hotel offering the finest luxury experience in Varanasi with royal rooms and impeccable service.",
-    highlights: ["Heritage property", "Royal interiors", "Private garden", "Butler service"],
-    checkIn: "2:00 PM",
-    checkOut: "12:00 PM",
-    badge: "Best Seller",
+    coordinates: { lat: 25.2889, lng: 83.0069 },
+    amenities: ["Free wifi", "Free parking", "Bed and Breakfast", "Ganga view", "Rooftop Restaurant", "Travel Desk"],
+    badge: "Three Star",
+    description: "A palatial heritage property with breathtaking views of the Ganga, featuring royal architecture and world-class amenities.",
+    fullDescription: "Nestled on the banks of the sacred Ganga at Assi Ghat, Varanasi Heritage offers an unparalleled blend of royal grandeur and modern luxury. This meticulously restored palace features ornate interiors, and fine dining that celebrates the culinary heritage of Banaras. Each room is a masterpiece of design, combining traditional motifs with contemporary comfort. Wake up to the mesmerizing view of the Ganga, participate in the evening aarti from the private ghat, and experience the true essence of Banaras royalty.",
     roomTypes: [
       {
-        id: "deluxe",
-        name: "Deluxe Room",
+        type: "Deluxe Room",
+        roomType: "Deluxe",
         price: 2500,
-        originalPrice: 2500,
         capacity: "2 Adults",
-        size: "220 sq.ft",
-        description: "Warmly appointed rooms with heritage furnishings, garden views, and all essential modern comforts for a restful stay.",
-        images: ["/deluxeheri.jpeg", "/dh.jpeg", "/dh1.jpeg", "/dh2.jpeg", "/dh3.jpeg", "/dh5.jpeg", "/dh6.jpeg"],
-        amenities: ["AC", "WiFi", "TV", "Room Service", "Garden View"],
+        description: "Elegantly appointed deluxe room with river-facing windows, plush bedding, and modern amenities — the perfect retreat after a day exploring the ghats.",
+        images: ["/deluxeheri.jpeg", "/dh3.jpeg", "/h1.jpeg", "/h2.jpeg", "/h5.jpeg", "/dh6.jpeg"],
+        amenities: ["AC", "TV", "River View", "Free WiFi", "Hot Water"],
       },
       {
-        id: "super-deluxe",
-        name: "Super Deluxe Room",
-        price: 3200,
-        originalPrice: 3600,
-        capacity: "2 Adults + 1 Child",
-        size: "280 sq.ft",
-        description: "Spacious upgraded rooms featuring elegant decor, a seating nook, and enhanced amenities for extra comfort.",
-        images: ["/superdeluxeh.jpeg", "/sdh1.jpeg", "/sdh2.jpeg", "/sdh3.jpeg", "/sdh4.jpeg"],
-        amenities: ["AC", "WiFi", "Mini Bar", "TV", "Seating Area", "Room Service"],
-        badge: "Popular",
-      },
-      {
-        id: "premium",
-        name: "Premium Room",
-        price: 3800,
-        originalPrice: 4300,
-        capacity: "2 Adults",
-        size: "320 sq.ft",
-        description: "Premium river-facing rooms with plush interiors, curated artwork, and a private balcony overlooking the Ganga.",
-        images: [
-          "/preh.jpeg", "/preh1.jpeg", "/preh2.jpeg", "/preh3.jpeg", "/preh4.jpeg",
-          "/preh5.jpeg", "/preh6.jpeg", "/pre7h.jpeg", "/pre1.jpeg", "/pre4.1.jpeg",
-        ],
-        amenities: ["AC", "WiFi", "River View", "Balcony", "Mini Bar", "Bathtub"],
-        badge: "River View",
-      },
-      {
-        id: "twin",
-        name: "Twin Room",
-        price: 3000,
-        originalPrice: 3400,
-        capacity: "2 Adults (Twin Beds)",
-        size: "250 sq.ft",
-        description: "Comfortable twin-bedded rooms ideal for friends or colleagues travelling together, with all the charm of heritage decor.",
-        images: ["/dtwinh.jpeg", "/dtwinh1.jpeg", "/dtwinh2.jpeg", "/dtwinh3.jpeg"],
-        amenities: ["AC", "WiFi", "TV", "Twin Beds", "Room Service"],
-      },
-      {
-        id: "suite",
-        name: "Suite Room",
-        price: 5500,
-        originalPrice: 6200,
-        capacity: "2 Adults + 2 Children",
-        size: "480 sq.ft",
-        description: "The pinnacle of heritage luxury — a separate living area, royal furnishings, and butler service for an unforgettable stay.",
-        images: ["/suits.jpeg", "/suits1.jpeg"],
-        amenities: ["AC", "WiFi", "Living Area", "Butler Service", "Mini Bar", "Bathtub", "River View"],
-        badge: "Most Popular",
-      },
-      {
-        id: "executive",
-        name: "Executive Room",
+        type: "Suits Room",
+        roomType: "Suits",
         price: 4500,
-        originalPrice: 5000,
+        capacity: "4 Adults",
+        description: "A spacious suite offering a separate living area, a luxurious Jacuzzi, and a private balcony with panoramic Ganga views — pure indulgence.",
+        images: ["/suits.jpeg", "/suits1.jpeg", "/dh2.jpeg"],
+        amenities: ["AC", "Living Room", "Jacuzzi", "Ganga View Balcony", "Room Service"],
+      },
+      {
+        type: "Super Deluxe Room",
+        roomType: "Super Deluxe",
+        price: 7500,
+        capacity: "6 Adults",
+        description: "The crown jewel of Varanasi Heritage — a palatial royal suite with a private terrace, dedicated butler, and exclusive ghat access for a truly regal experience.",
+        images: ["/superdeluxeh.jpeg", "/sdh2.jpeg", "/sdh1.jpeg", "/sdh3.jpeg", "/sdh4.jpeg"],
+        amenities: ["AC", "Butler Service", "Private Ghat Access"],
+      },
+      {
+        type: "Twin Deluxe Room",
+        roomType: "Twin Deluxe",
+        price: 2500,
         capacity: "3 Adults",
-        size: "350 sq.ft",
-        description: "Executive rooms designed for discerning travellers, featuring a dedicated work desk and access to the rooftop lounge.",
-        images: [
-          "/v1.jpeg", "/v2.jpeg", "/v3.jpeg", "/v4.jpeg", "/v5.jpeg",
-          "/v6.jpeg", "/v7.jpeg", "/v8.jpeg", "/v9.jpeg", "/vinn.jpeg", "/vw.jpeg", "/reception.jpeg", "/receptv.jpeg",
-        ],
-        amenities: ["AC", "WiFi", "Work Desk", "Lounge Access", "Room Service"],
+        description: "Perfect for friends or colleagues — two large twin beds, city-view windows, and all modern comforts make this our most popular room for group travellers.",
+        images: ["/dtwinh.jpeg", "/dtwinh1.jpeg", "/dh2.jpeg"],
+        amenities: ["AC", "TV", "Twin Beds", "City View", "Free WiFi"],
+      },
+      {
+        type: "Standard Room",
+        roomType: "Premium",
+        price: 2500,
+        capacity: "2 Adults",
+        description: "A cosy, well-appointed standard room featuring traditional artwork, comfortable beds, and modern bathroom essentials — ideal for couples and solo travellers.",
+        images: ["/preh.jpeg", "/preh1.jpeg", "/preh2.jpeg", "/preh3.jpeg", "/preh4.jpeg", "/preh5.jpeg", "/preh6.jpeg"],
+        amenities: ["AC", "TV", "Attached Bathroom", "Free WiFi"],
       },
     ],
+    policies: {
+      checkIn: "2:00 PM",
+      checkOut: "11:00 AM",
+      cancellation: "Free cancellation up to 48 hours before check-in. 50% charge within 48 hours.",
+      payment: "50% advance booking required. Balance at check-in.",
+      children: "Children below 6 years stay free. Extra bed charges apply.",
+    },
     nearbyAttractions: [
-      { name: "Assi Ghat", distance: "2 min walk" },
-      { name: "Dashashwamedh Ghat", distance: "15 min drive" },
-      { name: "Kashi Vishwanath Temple", distance: "20 min drive" },
-      { name: "BHU Campus", distance: "10 min drive" },
+      { name: "Assi Ghat", distance: "0.1 km", type: "Ghat" },
+      { name: "Kashi Vishwanath Temple", distance: "2.5 km", type: "Temple" },
+      { name: "Dashashwamedh Ghat", distance: "3 km", type: "Ghat" },
+      { name: "Banaras Hindu University", distance: "4 km", type: "University" },
     ],
-    guestReviewsList: [
-      { id: "r1", name: "Ananya Rao", avatar: "https://i.pravatar.cc/150?img=5", rating: 5, date: "May 2024", comment: "The Suite Room was breathtaking — royal interiors and a view of the Ganga we'll never forget. Butler service made it extra special." },
-      { id: "r2", name: "Karan Malhotra", avatar: "https://i.pravatar.cc/150?img=15", rating: 5, date: "April 2024", comment: "Booked the Premium Room for the river view and it did not disappoint. Staff was attentive and breakfast was excellent." },
-      { id: "r3", name: "Ritu Verma", avatar: "https://i.pravatar.cc/150?img=23", rating: 4, date: "February 2024", comment: "Lovely heritage property near Assi Ghat. The Deluxe Room was cozy and clean, great value for the price." },
+    guestReviews: [
+      { name: "Ananya Sharma", city: "Delhi", rating: 5, date: "March 2024", comment: "Absolutely stunning property! The Ganga view from our room was breathtaking. The staff was incredibly courteous and helpful." },
+      { name: "Rahul Verma", city: "Mumbai", rating: 5, date: "February 2024", comment: "A perfect blend of heritage and luxury. Will definitely come back." },
+      { name: "Priya Patel", city: "Bangalore", rating: 5, date: "January 2024", comment: "The evening aarti from the hotel ghat was a spiritual experience. Food was exceptional." },
     ],
   },
   {
-    id: "jamuna-guest-house",
+    id: 2,
+    slug: "jamuna-p-guest-house",
     name: "Jamuna(P) Guest House",
-    location: "Darbhanga Ghat, Varanasi",
+    category: "Premium",
+    hotelType: "Luxury",
+    image: "/j9.jpeg",
+    images: ["/j1.jpeg", "/j3.jpeg", "/j4.jpeg", "/j5.jpeg", "/j6.jpeg", "/j7.jpeg", "/j8.jpeg", "/j9.jpeg", "/jamuna2.jpeg", "/reception.jpeg"],
     rating: 4.8,
-    reviews: 892,
-    price: 12000,
-    originalPrice: 16000,
-    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80",
-    ],
-    amenities: ["Ganga View", "Restaurant", "WiFi", "Rooftop", "AC", "Room Service"],
-    category: "heritage",
-    description: "A 200-year-old restored palace on the banks of the Ganga offering unparalleled river views.",
-    highlights: ["Ganga view rooms", "Heritage architecture", "Rooftop restaurant", "Cultural evenings"],
-    checkIn: "2:00 PM",
-    checkOut: "11:00 AM",
-    badge: "Ganga View",
-    roomTypes: [
-      {
-        id: "deluxe",
-        name: "Deluxe Room",
-        price: 9500,
-        originalPrice: 12500,
-        capacity: "2 Adults",
-        size: "200 sq.ft",
-        description: "Restored palace rooms with antique furnishings and courtyard views, steps away from the ghat.",
-        images: ["/j1.jpeg", "/j3.jpeg", "/j4.jpeg"],
-        amenities: ["AC", "WiFi", "Room Service", "Courtyard View"],
-      },
-      {
-        id: "premium-ganga-view",
-        name: "Premium Ganga View Room",
-        price: 12000,
-        originalPrice: 16000,
-        capacity: "2 Adults",
-        size: "260 sq.ft",
-        description: "Wake up to unobstructed views of the Ganga from this premium heritage room with period decor.",
-        images: ["/j5.jpeg", "/j6.jpeg", "/jamuna2.jpeg"],
-        amenities: ["AC", "WiFi", "Ganga View", "Room Service", "Rooftop Access"],
-        badge: "Ganga View",
-      },
-      {
-        id: "family",
-        name: "Family Room",
-        price: 15500,
-        originalPrice: 19000,
-        capacity: "2 Adults + 2 Children",
-        size: "340 sq.ft",
-        description: "A generously sized heritage room perfect for families, with connecting sleeping areas and river-facing windows.",
-        images: ["/j7.jpeg", "/j8.jpeg", "/j9.jpeg"],
-        amenities: ["AC", "WiFi", "Ganga View", "Extra Bedding", "Room Service"],
-      },
-    ],
-    nearbyAttractions: [
-      { name: "Darbhanga Ghat", distance: "1 min walk" },
-      { name: "Manikarnika Ghat", distance: "8 min walk" },
-      { name: "Dashashwamedh Ghat", distance: "5 min walk" },
-      { name: "Kashi Vishwanath Temple", distance: "12 min walk" },
-    ],
-    guestReviewsList: [
-      { id: "r1", name: "Devansh Oberoi", avatar: "https://i.pravatar.cc/150?img=33", rating: 5, date: "March 2024", comment: "The Ganga View room was worth every rupee — waking up to the river and the morning aarti sounds was magical." },
-      { id: "r2", name: "Simran Kaur", avatar: "https://i.pravatar.cc/150?img=36", rating: 5, date: "January 2024", comment: "Beautifully restored heritage property. The Family Room fit all of us comfortably and the location can't be beaten." },
-      { id: "r3", name: "Arvind Nair", avatar: "https://i.pravatar.cc/150?img=40", rating: 4, date: "December 2023", comment: "Charming old-world property right on the ghats. Rooms are a bit compact but the views make up for it." },
-    ],
-  },
-  {
-    id: "radisson-varanasi",
-    name: "Radisson Hotel Varanasi",
-    location: "Mall Road, Varanasi",
-    rating: 4.6,
-    reviews: 2140,
-    price: 6500,
-    originalPrice: 9000,
-    image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80",
-    ],
-    amenities: ["Pool", "Spa", "Bar", "WiFi", "Gym", "Conference"],
-    category: "premium",
-    description: "Modern luxury hotel with world-class amenities in the heart of Varanasi.",
-    highlights: ["Rooftop pool", "Multi-cuisine restaurant", "Business center", "24/7 concierge"],
-    checkIn: "3:00 PM",
-    checkOut: "12:00 PM",
+    reviews: 156,
+    pricePerNight: 1499,
+    location: "Shivala Ghat, Varanasi",
+    coordinates: { lat: 25.29, lng: 83.008 },
+    amenities: ["Free wifi", "Ganga view", "Travel Desk"],
     badge: "Top Rated",
+    description: "Artistically designed boutique hotel with vibrant interiors, rooftop dining, and direct access to the ghats.",
+    fullDescription: "Jamuna(P) Guest House is a celebration of Banaras's vibrant arts and culture. Located just steps away from Shivala Ghat, this boutique property features artistically designed rooms that showcase local craftsmanship, a stunning rooftop restaurant offering panoramic views of the Ganga, and a serene yoga deck for morning practice. The hotel's intimate size ensures personalized attention and a peaceful atmosphere. Every corner of the property tells a story through its carefully curated art pieces, traditional textiles, and handcrafted furniture.",
     roomTypes: [
       {
-        id: "deluxe",
-        name: "Deluxe Room",
-        price: 6500,
-        originalPrice: 9000,
+        type: "Standard Room",
+        roomType: "Premium",
+        price: 1499,
         capacity: "2 Adults",
-        size: "300 sq.ft",
-        description: "Contemporary rooms with plush bedding, city views, and access to the hotel's pool and gym.",
-        images: [
-          "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1000&q=80",
-          "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1000&q=80",
-          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1000&q=80",
-        ],
-        amenities: ["AC", "WiFi", "Pool Access", "Gym Access", "Mini Bar"],
+        description: "A cosy, well-appointed standard room featuring traditional artwork, comfortable beds, and modern bathroom essentials — ideal for couples and solo travellers.",
+        images: ["/j1.jpeg", "/j3.jpeg", "/j4.jpeg"],
+        amenities: ["AC", "TV", "Attached Bathroom", "Free WiFi"],
       },
       {
-        id: "premium",
-        name: "Premium Room",
-        price: 8200,
-        originalPrice: 11000,
-        capacity: "2 Adults + 1 Child",
-        size: "360 sq.ft",
-        description: "Upgraded rooms with a lounge chair, premium bath amenities, and complimentary breakfast at the multi-cuisine restaurant.",
-        images: [
-          "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1000&q=80",
-          "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1000&q=80",
-          "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1000&q=80",
-        ],
-        amenities: ["AC", "WiFi", "Breakfast Included", "Bathtub", "Lounge Chair"],
-        badge: "Popular",
-      },
-      {
-        id: "suite",
-        name: "Suite Room",
-        price: 11500,
-        originalPrice: 15000,
-        capacity: "2 Adults + 2 Children",
-        size: "550 sq.ft",
-        description: "A spacious suite with a separate living room, panoramic city views, and priority access to the spa.",
-        images: [
-          "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?w=1000&q=80",
-          "https://images.unsplash.com/photo-1592229505726-ca121723b8ef?w=1000&q=80",
-          "https://images.unsplash.com/photo-1631049035182-249067d7618e?w=1000&q=80",
-        ],
-        amenities: ["AC", "WiFi", "Living Area", "Spa Access", "Mini Bar", "Bathtub"],
-        badge: "Best Value",
-      },
-    ],
-    nearbyAttractions: [
-      { name: "Varanasi Cantt Railway Station", distance: "10 min drive" },
-      { name: "Lanka Market", distance: "12 min drive" },
-      { name: "Dashashwamedh Ghat", distance: "18 min drive" },
-      { name: "Kashi Vishwanath Temple", distance: "20 min drive" },
-    ],
-    guestReviewsList: [
-      { id: "r1", name: "Neha Kapoor", avatar: "https://i.pravatar.cc/150?img=44", rating: 5, date: "June 2024", comment: "Great business hotel — the Suite Room was spacious and the rooftop pool was a wonderful way to unwind after sightseeing." },
-      { id: "r2", name: "Aditya Chauhan", avatar: "https://i.pravatar.cc/150?img=52", rating: 4, date: "April 2024", comment: "Clean, modern, well-located. The Premium Room breakfast was a great touch." },
-      { id: "r3", name: "Pooja Bhatt", avatar: "https://i.pravatar.cc/150?img=58", rating: 5, date: "February 2024", comment: "Loved the gym and spa access with the Deluxe Room. Staff were very professional." },
-    ],
-  },
-  {
-    id: "golden-tulip",
-    name: "Golden Tulip Essential",
-    location: "Sigra, Varanasi",
-    rating: 4.4,
-    reviews: 1560,
-    price: 4200,
-    originalPrice: 6000,
-    image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=80",
-    ],
-    amenities: ["Restaurant", "WiFi", "AC", "Parking", "Room Service"],
-    category: "standard",
-    description: "Comfortable and well-appointed hotel with excellent connectivity to all major ghats.",
-    highlights: ["Central location", "Complimentary breakfast", "Temple tour arrangements", "Travel desk"],
-    checkIn: "2:00 PM",
-    checkOut: "12:00 PM",
-    roomTypes: [
-      {
-        id: "standard",
-        name: "Standard Room",
-        price: 4200,
-        originalPrice: 6000,
-        capacity: "2 Adults",
-        size: "230 sq.ft",
-        description: "Comfortable, no-frills rooms with everything you need for a convenient stay near Sigra.",
-        images: [
-          "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1000&q=80",
-          "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=1000&q=80",
-        ],
-        amenities: ["AC", "WiFi", "Room Service", "TV"],
-      },
-      {
-        id: "deluxe",
-        name: "Deluxe Room",
-        price: 5200,
-        originalPrice: 7200,
-        capacity: "2 Adults + 1 Child",
-        size: "270 sq.ft",
-        description: "A larger room with upgraded furnishings, a work desk, and complimentary breakfast included.",
-        images: [
-          "https://images.unsplash.com/photo-1560347876-aeef00ee58a1?w=1000&q=80",
-          "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=1000&q=80",
-        ],
-        amenities: ["AC", "WiFi", "Breakfast Included", "Work Desk", "Room Service"],
-        badge: "Popular",
-      },
-    ],
-    nearbyAttractions: [
-      { name: "Sigra Market", distance: "5 min walk" },
-      { name: "Godowlia Market", distance: "20 min drive" },
-      { name: "Kashi Vishwanath Temple", distance: "25 min drive" },
-      { name: "Varanasi Airport", distance: "35 min drive" },
-    ],
-    guestReviewsList: [
-      { id: "r1", name: "Rohan Deshmukh", avatar: "https://i.pravatar.cc/150?img=62", rating: 4, date: "May 2024", comment: "Good value Deluxe Room with breakfast included. Travel desk helped us plan the temple tour easily." },
-      { id: "r2", name: "Kavita Iyer", avatar: "https://i.pravatar.cc/150?img=65", rating: 4, date: "March 2024", comment: "Clean and centrally located. The Standard Room was compact but comfortable for a short stay." },
-      { id: "r3", name: "Manish Trivedi", avatar: "https://i.pravatar.cc/150?img=68", rating: 5, date: "January 2024", comment: "Friendly staff, good parking, and easy access to Sigra market. Would book again." },
-    ],
-  },
-  {
-    id: "hotel-ganges-view",
-    name: "Hotel Ganges View",
-    location: "Assi Ghat, Varanasi",
-    rating: 4.7,
-    reviews: 678,
-    price: 3500,
-    originalPrice: 5000,
-    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-    ],
-    amenities: ["Ganga View", "Rooftop", "Yoga", "WiFi", "Traditional Decor"],
-    category: "heritage",
-    description: "A boutique heritage property at Assi Ghat with authentic Banarasi charm.",
-    highlights: ["Steps to Assi Ghat", "Yoga classes", "Rooftop Ganga view", "Homemade meals"],
-    checkIn: "1:00 PM",
-    checkOut: "11:00 AM",
-    badge: "Boutique",
-    roomTypes: [
-      {
-        id: "deluxe",
-        name: "Deluxe Room",
+        type: "Deluxe Room",
+        roomType: "Deluxe",
         price: 3500,
-        originalPrice: 5000,
-        capacity: "2 Adults",
-        size: "210 sq.ft",
-        description: "Traditionally decorated rooms with handcrafted furniture and a peaceful, homely atmosphere.",
-        images: [
-          "https://images.unsplash.com/photo-1618221469555-7f3ad97540d6?w=1000&q=80",
-          "https://images.unsplash.com/photo-1595521624992-48a59aef95c3?w=1000&q=80",
-        ],
-        amenities: ["WiFi", "Fan/AC", "Traditional Decor", "Homemade Meals"],
+        capacity: "3 Adults",
+        description: "Spacious deluxe room with hand-painted murals and a Ganga-facing window — wake up to the serene sound of the river every morning.",
+        images: ["/j5.jpeg", "/j6.jpeg", "/j7.jpeg"],
+        amenities: ["AC", "TV", "Ganga View", "Mini Fridge", "Free WiFi"],
       },
       {
-        id: "ganga-view",
-        name: "Ganga View Room",
-        price: 4300,
-        originalPrice: 6000,
-        capacity: "2 Adults",
-        size: "240 sq.ft",
-        description: "Rooms overlooking the Ganga with direct rooftop access for sunrise yoga and evening aarti views.",
-        images: [
-          "https://images.unsplash.com/photo-1601565415267-724aa70a7b5c?w=1000&q=80",
-          "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=1000&q=80",
-        ],
-        amenities: ["WiFi", "AC", "Ganga View", "Rooftop Access", "Yoga Sessions"],
-        badge: "Ganga View",
+        type: "Art Suite",
+        roomType: "Suites",
+        price: 5500,
+        capacity: "4 Adults",
+        description: "A curated sanctuary blending local artistry with luxury comfort — featuring a living area, a private balcony, and an exclusive art collection handpicked by local artists.",
+        images: ["/j8.jpeg", "/j9.jpeg", "/jamuna2.jpeg"],
+        amenities: ["AC", "Living Area", "Art Collection", "Private Balcony", "Room Service"],
       },
     ],
+    policies: {
+      checkIn: "1:00 PM",
+      checkOut: "10:30 AM",
+      cancellation: "Free cancellation 24 hours before check-in. Late cancellation charged 1 night.",
+      payment: "Full payment at check-in accepted via card, UPI, or cash.",
+      children: "Children welcome. Extra bed available at ₹500/night.",
+    },
     nearbyAttractions: [
-      { name: "Assi Ghat", distance: "1 min walk" },
-      { name: "Tulsi Ghat", distance: "5 min walk" },
-      { name: "BHU Campus", distance: "10 min drive" },
-      { name: "Dashashwamedh Ghat", distance: "15 min drive" },
+      { name: "Shivala Ghat", distance: "0.05 km", type: "Ghat" },
+      { name: "Harishchandra Ghat", distance: "0.5 km", type: "Ghat" },
+      { name: "Kashi Vishwanath Temple", distance: "1.5 km", type: "Temple" },
+      { name: "Manikarnika Ghat", distance: "1 km", type: "Ghat" },
     ],
-    guestReviewsList: [
-      { id: "r1", name: "Ishaan Bhalla", avatar: "https://i.pravatar.cc/150?img=70", rating: 5, date: "April 2024", comment: "The Ganga View Room and rooftop yoga sessions made this the most peaceful stay of our trip." },
-      { id: "r2", name: "Divya Prakash", avatar: "https://i.pravatar.cc/150?img=8", rating: 4, date: "February 2024", comment: "Authentic Banarasi charm, homemade meals were delicious, and Assi Ghat is right outside." },
-      { id: "r3", name: "Sameer Joshi", avatar: "https://i.pravatar.cc/150?img=20", rating: 5, date: "November 2023", comment: "Boutique gem — small but full of character. Loved watching the aarti from the rooftop." },
+    guestReviews: [
+      { name: "Vikram Singh", city: "Jaipur", rating: 5, date: "April 2024", comment: "The rooftop restaurant has the best view of the Ganga. Food was delicious and the vibe was amazing." },
+      { name: "Neha Gupta", city: "Pune", rating: 4, date: "March 2024", comment: "Loved the artistic interiors! Each room is unique. The morning yoga session was a great start to the day." },
+      { name: "Amit Joshi", city: "Kolkata", rating: 5, date: "February 2024", comment: "Perfect location, walking distance to the ghats. The staff made us feel very welcome." },
     ],
   },
   {
-    id: "surya-varanasi",
-    name: "Surya Hotel Varanasi",
-    location: "The Mall, Varanasi",
-    rating: 4.3,
-    reviews: 990,
-    price: 2800,
-    originalPrice: 4000,
-    image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80",
-    ],
-    amenities: ["Restaurant", "Bar", "WiFi", "AC", "Parking"],
-    category: "standard",
-    description: "A classic hotel offering great value with a central location and warm hospitality.",
-    highlights: ["Value for money", "Restaurant on-site", "Easy access to ghats", "24/7 reception"],
-    checkIn: "2:00 PM",
-    checkOut: "12:00 PM",
+    id: 3,
+    slug: "hotel-varanasi-inn",
+    name: "Hotel Varanasi Inn",
+    category: "Budget",
+    hotelType: "Budget",
+    image: "/v1.jpeg",
+    images: ["/v1.jpeg", "/v2.jpeg", "/v3.jpeg", "/v5.jpeg", "/v6.jpeg", "/v7.jpeg", "/v8.jpeg", "/v9.jpeg", "/vw.jpeg", "/vinn.jpeg", "/receptv.jpeg"],
+    rating: 4.4,
+    reviews: 312,
+    pricePerNight: 2500,
+    location: "Sigra, Varanasi",
+    coordinates: { lat: 25.3176, lng: 83.0062 },
+    amenities: ["Free wifi", "Free parking", "Bed and Breakfast", "Ganga view", "Rooftop Restaurant", "Travel Desk"],
+    badge: "Best Value",
+    description: "Comfortable and affordable accommodation in the heart of Varanasi, perfect for budget-conscious travelers.",
+    fullDescription: "Hotel Varanasi Inn offers the perfect base for exploring the wonders of Varanasi without breaking the bank. Situated in the bustling Godowlia area, just minutes from the iconic Kashi Vishwanath Temple, this hotel provides clean, comfortable rooms with all essential amenities. Start your day with a complimentary breakfast before heading out to explore the nearby temples, ghats, and narrow lanes of the old city. Our friendly staff is always ready with local tips and recommendations to make your Varanasi visit truly memorable.",
     roomTypes: [
       {
-        id: "standard",
-        name: "Standard Room",
-        price: 2800,
-        originalPrice: 4000,
+        type: "Standard Room",
+        roomType: "Budget",
+        price: 2200,
         capacity: "2 Adults",
-        size: "200 sq.ft",
-        description: "Simple, clean rooms with everything you need for a comfortable budget-friendly stay.",
-        images: ["/s1.jpeg", "/s2.jpeg"],
-        amenities: ["AC", "WiFi", "TV", "Room Service"],
+        description: "A clean, comfortable standard room with all essential amenities — great value for budget-conscious travellers seeking a central Varanasi base.",
+        images: ["/v1.jpeg", "/v2.jpeg", "/v3.jpeg"],
+        amenities: ["AC", "TV", "Attached Bathroom", "Free WiFi"],
       },
       {
-        id: "deluxe",
-        name: "Deluxe Room",
-        price: 3400,
-        originalPrice: 4800,
-        capacity: "2 Adults + 1 Child",
-        size: "250 sq.ft",
-        description: "A roomier option with upgraded interiors and access to the on-site restaurant and bar.",
-        images: ["/s3.jpeg", "/s5.jpeg"],
-        amenities: ["AC", "WiFi", "Mini Bar", "Room Service", "Restaurant Access"],
-        badge: "Popular",
+        type: "Deluxe Room",
+        roomType: "Deluxe",
+        price: 2200,
+        capacity: "3 Adults",
+        description: "A step up from standard — our deluxe room offers a city view, extra space, and premium linen for a more relaxing stay in the heart of Varanasi.",
+        images: ["/v5.jpeg", "/v6.jpeg", "/v7.jpeg"],
+        amenities: ["AC", "TV", "City View", "Mini Fridge", "Free WiFi"],
+      },
+      {
+        type: "Family Room",
+        roomType: "Super Deluxe",
+        price: 2500,
+        capacity: "4 Adults",
+        description: "Spacious interconnecting rooms ideal for families — plenty of room for everyone, with all the comforts of home and easy access to Varanasi's top attractions.",
+        images: ["/vinn.jpeg", "/receptv.jpeg", "/v1.jpeg"],
+        amenities: ["AC", "TV", "Interconnecting Rooms", "Extra Beds", "Free WiFi"],
       },
     ],
+    policies: {
+      checkIn: "12:00 PM",
+      checkOut: "11:00 AM",
+      cancellation: "Free cancellation up to 24 hours before check-in.",
+      payment: "Pay at hotel. Online booking discount available.",
+      children: "Children under 8 stay free with parents.",
+    },
     nearbyAttractions: [
-      { name: "Varanasi Cantt Railway Station", distance: "8 min drive" },
-      { name: "Sarnath", distance: "30 min drive" },
-      { name: "Dashashwamedh Ghat", distance: "20 min drive" },
-      { name: "Kashi Vishwanath Temple", distance: "22 min drive" },
+      { name: "Kashi Vishwanath Temple", distance: "0.3 km", type: "Temple" },
+      { name: "Dashashwamedh Ghat", distance: "0.8 km", type: "Ghat" },
+      { name: "Shri Kashi Vishwanath Corridor", distance: "0.4 km", type: "Landmark" },
+      { name: "Banaras Silk Market", distance: "0.2 km", type: "Market" },
     ],
-    guestReviewsList: [
-      { id: "r1", name: "Tanvi Sharma", avatar: "https://i.pravatar.cc/150?img=28", rating: 4, date: "March 2024", comment: "Great value for money. The Deluxe Room was comfortable and the restaurant food was tasty." },
-      { id: "r2", name: "Gaurav Sethi", avatar: "https://i.pravatar.cc/150?img=31", rating: 4, date: "January 2024", comment: "Reception staff were helpful round the clock. Simple Standard Room but very clean." },
-      { id: "r3", name: "Priyanka Das", avatar: "https://i.pravatar.cc/150?img=23", rating: 5, date: "December 2023", comment: "Convenient location near the station, easy to get to Sarnath and the ghats from here." },
+    guestReviews: [
+      { name: "Rajesh Kumar", city: "Patna", rating: 5, date: "April 2024", comment: "Excellent value for money! Clean rooms, great location near the temple. Breakfast was good." },
+      { name: "Sneha Reddy", city: "Hyderabad", rating: 4, date: "March 2024", comment: "Very convenient location. Walking distance to most attractions. Staff was helpful." },
+      { name: "Mohammad Ali", city: "Lucknow", rating: 4, date: "February 2024", comment: "Good budget hotel. Basic but clean. Perfect for a short stay in Varanasi." },
+    ],
+  },
+  {
+    id: 4,
+    slug: "shivangi-inn",
+    name: "Shivangi Inn",
+    category: "Premium",
+    hotelType: "Premium",
+    image: "/s2.jpeg",
+    images: ["/s1.jpeg", "/s2.jpeg", "/s3.jpeg", "/s4.jpeg", "/s5.jpeg"],
+    rating: 4.9,
+    reviews: 74,
+    pricePerNight: 1499,
+    location: "Shivala Ghat, Varanasi",
+    coordinates: { lat: 25.2895, lng: 83.0075 },
+    amenities: ["Free wifi", "Ganga view", "Travel Desk"],
+    badge: "Heritage Stay",
+    description: "A premium hotel in Varanasi offering elegant rooms, modern comforts, exceptional hospitality, and convenient access to the city's iconic temples, ghats, and tourist attractions.",
+    fullDescription: "Shivangi Inn is a premium hotel in Varanasi designed to provide a perfect blend of comfort, convenience, and warm hospitality. Located close to the city's most popular attractions, including Kashi Vishwanath Temple, Dashashwamedh Ghat, Assi Ghat, and Sarnath, the hotel is an ideal choice for pilgrims, families, business travelers, and tourists. Guests can enjoy spacious air-conditioned rooms, complimentary high-speed Wi-Fi, delicious multi-cuisine dining, 24-hour room service, travel assistance, and professional staff committed to delivering a memorable stay. Whether you are exploring the spiritual heritage of Banaras or visiting for business, Shivangi Inn offers a peaceful and comfortable experience with modern amenities and excellent service.",
+    roomTypes: [
+      {
+        type: "Heritage Room",
+        roomType: "Deluxe",
+        price: 1499,
+        capacity: "2 Adults",
+        description: "Authentically restored heritage room adorned with antique furniture, hand-carved wooden accents, and a courtyard view — step into 200 years of Banarasi history.",
+        images: ["/s1.jpeg", "/s2.jpeg"],
+        amenities: ["AC", "Antique Furniture", "Courtyard View", "Heritage Bath", "Free WiFi"],
+      },
+      {
+        type: "Grand Heritage Suite",
+        roomType: "Suites",
+        price: 2500,
+        capacity: "2 Adults",
+        description: "A grand suite featuring a sitting area with original teak furniture, a private terrace overlooking the Ganga, and a heritage bathroom with brass fittings.",
+        images: ["/s3.jpeg", "/s4.jpeg"],
+        amenities: ["AC", "Sitting Area", "Private Terrace", "Ganga View", "Premium Toiletries"],
+      },
+    ],
+    policies: {
+      checkIn: "2:00 PM",
+      checkOut: "11:00 AM",
+      cancellation: "Free cancellation 72 hours before check-in. 50% charge within 72 hours.",
+      payment: "50% deposit required for booking. Balance at check-in via card or UPI.",
+      children: "Children above 10 years welcome. Heritage property, some areas may not be child-friendly.",
+    },
+    nearbyAttractions: [
+      { name: "Shivala Ghat", distance: "0.1 km", type: "Ghat" },
+      { name: "Tulsi Manas Temple", distance: "0.8 km", type: "Temple" },
+      { name: "Banaras Hindu University", distance: "3 km", type: "University" },
+      { name: "Sarnath", distance: "10 km", type: "Heritage" },
+    ],
+    guestReviews: [
+      { name: "Arun Mehta", city: "London", rating: 5, date: "March 2024", comment: "An extraordinary heritage experience! The haveli is a living museum. The Ganga view from the terrace is unforgettable." },
+      { name: "Deepa Nair", city: "Kochi", rating: 5, date: "February 2024", comment: "Magical stay! The private Ganga puja arranged by the staff was a deeply spiritual experience. Food was authentic and delicious." },
+      { name: "Carlos Mendez", city: "Barcelona", rating: 5, date: "January 2024", comment: "The most authentic Indian experience I have ever had. Every corner of this haveli has a story. Absolutely loved it." },
     ],
   },
 ];

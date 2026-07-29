@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { getWhatsAppUrl, genericInquiryMessage } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "My Bookings — Kashi Darshan Account",
@@ -141,7 +142,12 @@ export default function MyBookingsPage() {
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Our team is available 24×7 for support.</p>
           </div>
           <div className="flex gap-3">
-            <a href="https://wa.me/919876543210" className="px-4 py-2 bg-green-500 text-white rounded-xl text-sm font-semibold hover:bg-green-600 transition-colors">
+            <a
+              href={getWhatsAppUrl(genericInquiryMessage("help with my existing booking"))}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-green-500 text-white rounded-xl text-sm font-semibold hover:bg-green-600 transition-colors"
+            >
               WhatsApp
             </a>
             <a href="tel:+919876543210" className="px-4 py-2 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-sm font-semibold hover:shadow-lg transition-all">

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import { faqs } from "@/lib/data/experiences";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { getWhatsAppUrl, genericInquiryMessage } from "@/lib/whatsapp";
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -92,7 +93,7 @@ export function FAQSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="https://wa.me/919876543210"
+              href={getWhatsAppUrl(genericInquiryMessage("planning my Kashi trip"))}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-green-500 text-white rounded-full text-sm font-semibold hover:bg-green-600 transition-colors"

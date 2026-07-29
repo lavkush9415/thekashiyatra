@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { useToast } from "@/components/providers/ToastProvider";
+import { getWhatsAppUrl, genericInquiryMessage } from "@/lib/whatsapp";
 
 export function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
@@ -209,7 +210,12 @@ export function ContactSection() {
 
               <p className="text-xs text-gray-400 text-center">
                 Or reach us directly:{" "}
-                <a href="https://wa.me/919876543210" className="text-green-500 font-medium hover:underline">
+                <a
+                  href={getWhatsAppUrl(genericInquiryMessage("planning my Kashi trip"))}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-green-500 font-medium hover:underline"
+                >
                   WhatsApp
                 </a>{" "}
                 ·{" "}

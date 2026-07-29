@@ -10,6 +10,7 @@ import {
   MapPin, ChevronDown, BookOpen, CalendarCheck
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getWhatsAppUrl, genericInquiryMessage } from "@/lib/whatsapp";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -218,13 +219,15 @@ export function Navbar() {
                 </button>
               )}
 
-              <Link
-                href="/contact"
+              <a
+                href={getWhatsAppUrl(genericInquiryMessage("your travel packages and services"))}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
               >
                 <Phone size={15} />
                 Book Now
-              </Link>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -299,14 +302,16 @@ export function Navbar() {
 
                 {/* Actions */}
                 <div className="mt-8 space-y-3">
-                  <Link
-                    href="/contact"
+                  <a
+                    href={getWhatsAppUrl(genericInquiryMessage("your travel packages and services"))}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={() => setMobileOpen(false)}
                     className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-full font-semibold shadow-lg"
                   >
                     <Phone size={16} />
                     Book Now
-                  </Link>
+                  </a>
                   <div className="flex gap-3">
                     <Link
                       href="/wishlist"

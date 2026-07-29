@@ -7,6 +7,7 @@ import { Star, Clock, ChevronRight } from "lucide-react";
 import { experiences } from "@/lib/data/experiences";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { formatPrice } from "@/lib/utils";
+import { getWhatsAppUrl, experienceBookingMessage, aartiBookingMessage, isGangaAarti } from "@/lib/whatsapp";
 
 export function SpiritualExperiences() {
   return (
@@ -73,12 +74,18 @@ export function SpiritualExperiences() {
                   {experiences[0].price === 0 ? "Free" : formatPrice(experiences[0].price)}
                 </span>
               </div>
-              <Link
-                href="/experiences"
+              <a
+                href={getWhatsAppUrl(
+                  isGangaAarti(experiences[0].name)
+                    ? aartiBookingMessage({ packageName: experiences[0].name, price: experiences[0].price })
+                    : experienceBookingMessage({ experienceName: experiences[0].name, price: experiences[0].price })
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-4 w-full py-3 bg-gradient-to-r from-amber-500 to-orange-600 text-white rounded-xl text-sm font-semibold text-center hover:shadow-xl hover:shadow-amber-500/30 transition-all"
               >
                 Book This Experience
-              </Link>
+              </a>
             </div>
           </motion.div>
 
@@ -92,50 +99,58 @@ export function SpiritualExperiences() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="group relative bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-100 dark:border-gray-700 shadow-card hover:shadow-luxury transition-all duration-300 overflow-hidden"
+                className="group relative bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-card hover:shadow-luxury transition-all duration-300 overflow-hidden"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${exp.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-
-                <div className="relative z-10">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${exp.bgGradient} flex items-center justify-center text-2xl`}>
-                      {exp.icon}
-                    </div>
-                    <div className="text-right">
-                      <div className="flex items-center gap-1 justify-end">
-                        <Star size={11} className="text-amber-400 fill-amber-400" />
-                        <span className="text-xs font-semibold text-gray-700 dark:text-gray-200">{exp.rating}</span>
-                      </div>
-                      <p className="text-xs text-gray-400">({exp.reviews.toLocaleString()})</p>
-                    </div>
-                  </div>
-
+                {/* Image section */}
+                <div className="relative h-44 overflow-hidden">
+                  <Image
+                    src={exp.image}
+                    alt={exp.name}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${exp.bgGradient}`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  <div className="absolute top-3 left-3 text-3xl">{exp.icon}</div>
                   {exp.badge && (
-                    <span className="inline-block px-2 py-0.5 bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-400 text-xs font-medium rounded-full mb-2">
+                    <span className="absolute top-3 right-3 px-2 py-0.5 bg-white/90 text-xs font-bold text-gray-700 rounded-full">
                       {exp.badge}
                     </span>
                   )}
+                </div>
 
+                {/* Content section */}
+                <div className="p-5 relative z-10">
                   <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-1.5 group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors">
                     {exp.name}
                   </h4>
-
                   <div className="flex items-center gap-3 text-xs text-gray-500 mb-3">
                     <span className="flex items-center gap-1"><Clock size={10} />{exp.duration}</span>
                     <span className="capitalize px-2 py-0.5 bg-gray-100 dark:bg-gray-700 rounded-full">{exp.category}</span>
                   </div>
-
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mb-4">
                     <p className={`font-bold text-base ${exp.color}`}>
                       {exp.price === 0 ? "Free" : formatPrice(exp.price)}
                     </p>
-                    <Link
-                      href="/experiences"
-                      className="text-xs text-amber-600 hover:text-amber-800 dark:text-amber-400 dark:hover:text-amber-300 font-medium hover:underline"
-                    >
-                      Explore →
-                    </Link>
+                    <div className="flex items-center gap-2">
+                      <Star size={11} className="text-amber-400 fill-amber-400" />
+                      <span className="text-xs font-semibold text-gray-700 dark:text-gray-200">{exp.rating}</span>
+                      <span className="text-gray-400 text-xs">({exp.reviews.toLocaleString()})</span>
+                    </div>
                   </div>
+                  <a
+                    href={getWhatsAppUrl(
+                      isGangaAarti(exp.name)
+                        ? aartiBookingMessage({ packageName: exp.name, price: exp.price })
+                        : experienceBookingMessage({ experienceName: exp.name, price: exp.price })
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3 bg-gradient-to-r from-amber-500 to-orange-600 text-white rounded-xl text-sm font-semibold text-center block hover:shadow-xl hover:shadow-amber-500/30 transition-all"
+                  >
+                    Book This Experience
+                  </a>
                 </div>
               </motion.div>
             ))}

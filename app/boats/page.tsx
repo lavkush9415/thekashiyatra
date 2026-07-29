@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { boats } from "@/lib/data/boats";
+import { boatRides } from "@/lib/data/boats";
 import { BoatsPageClient } from "./BoatsPageClient";
 
 export const metadata: Metadata = {
@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function BoatsPage() {
-  return <BoatsPageClient boats={boats} />;
+  return <BoatsPageClient boats={boatRides} />;
 }

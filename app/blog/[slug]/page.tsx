@@ -3,6 +3,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Clock, Calendar, User, Share2, BookOpen } from "lucide-react";
+import { getWhatsAppUrl, aartiBookingMessage } from "@/lib/whatsapp";
+
+const gangaAartiWhatsAppUrl = getWhatsAppUrl(
+  aartiBookingMessage({ packageName: "Evening Ganga Aarti Cruise", price: 1200 })
+);
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -152,7 +157,7 @@ Book our **Ganga Aarti Boat Experience** — we guarantee:
 - Flower & diya for offering
 - Drop back to your hotel
 
-[Book Now →](/experiences)
+[Book Now →](${gangaAartiWhatsAppUrl})
     `,
   },
   "varanasi-ghats-guide": {

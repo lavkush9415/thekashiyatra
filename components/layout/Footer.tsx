@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Send, ChevronRight, Heart } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/components/providers/ToastProvider";
+import { getWhatsAppUrl, genericInquiryMessage } from "@/lib/whatsapp";
 
 // SVG social icons (lucide-react v3 removed brand icons)
 const InstagramIcon = () => (
@@ -73,12 +74,14 @@ export function Footer() {
             <p className="text-white font-medium text-sm">
               ✨ Exclusive Offers for Group Bookings — Save up to 30%!
             </p>
-            <Link
-              href="/contact"
+            <a
+              href={getWhatsAppUrl(genericInquiryMessage("a group booking quote"))}
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-5 py-2 bg-white text-[#8B4513] rounded-full text-sm font-semibold hover:bg-amber-50 transition-colors whitespace-nowrap"
             >
               Get Quote
-            </Link>
+            </a>
           </div>
         </div>
       </div>

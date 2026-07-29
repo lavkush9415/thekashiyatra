@@ -11,7 +11,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const hotel = hotels.find((h) => h.id === id);
+  const hotel = hotels.find((h) => h.slug === id);
   if (!hotel) return { title: "Hotel Not Found" };
   return {
     title: `${hotel.name} — Varanasi Hotel Booking`,
@@ -20,12 +20,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  return hotels.map((h) => ({ id: h.id }));
+  return hotels.map((h) => ({ id: h.slug }));
 }
 
 export default async function HotelDetailPage({ params }: Props) {
   const { id } = await params;
-  const hotel = hotels.find((h) => h.id === id);
+  const hotel = hotels.find((h) => h.slug === id);
   if (!hotel) notFound();
 
   return (

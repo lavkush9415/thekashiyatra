@@ -3,6 +3,7 @@ import Image from "next/image";
 import { experiences } from "@/lib/data/experiences";
 import { formatPrice } from "@/lib/utils";
 import { Star, Clock } from "lucide-react";
+import { getWhatsAppUrl, experienceBookingMessage, aartiBookingMessage, isGangaAarti } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Spiritual Experiences in Varanasi — Ganga Aarti, Puja, Yoga & More",
@@ -72,9 +73,18 @@ export default function ExperiencesPage() {
                   <p className={`font-bold text-lg ${exp.color}`}>
                     {exp.price === 0 ? "Free" : formatPrice(exp.price)}
                   </p>
-                  <button className="px-4 py-2 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all">
+                  <a
+                    href={getWhatsAppUrl(
+                      isGangaAarti(exp.name)
+                        ? aartiBookingMessage({ packageName: exp.name, price: exp.price })
+                        : experienceBookingMessage({ experienceName: exp.name, price: exp.price })
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all"
+                  >
                     Book
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

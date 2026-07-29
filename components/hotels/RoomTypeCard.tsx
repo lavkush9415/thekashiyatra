@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Users, Maximize2, ImageIcon, Check } from "lucide-react";
+import { Users, ImageIcon, Check } from "lucide-react";
 import { RoomType } from "@/lib/data/hotels";
 import { formatPrice, cn } from "@/lib/utils";
 
@@ -36,16 +36,16 @@ export function RoomTypeCard({ room, isSelected, index, onSelect, onViewPhotos, 
         {cover && (
           <Image
             src={cover}
-            alt={room.name}
+            alt={room.type}
             fill
             className="object-cover group-hover:scale-110 transition-transform duration-700"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-        {room.badge && (
+        {room.roomType && (
           <span className="absolute top-3 left-3 px-3 py-1 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white text-xs font-bold rounded-full">
-            {room.badge}
+            {room.roomType}
           </span>
         )}
         {room.images.length > 1 && (
@@ -70,7 +70,7 @@ export function RoomTypeCard({ room, isSelected, index, onSelect, onViewPhotos, 
       <div className="p-5">
         <div className="flex items-start justify-between gap-2 mb-1.5">
           <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-[#FF9933] transition-colors">
-            {room.name}
+            {room.type}
           </h3>
         </div>
 
@@ -78,11 +78,6 @@ export function RoomTypeCard({ room, isSelected, index, onSelect, onViewPhotos, 
           <span className="flex items-center gap-1">
             <Users size={12} /> {room.capacity}
           </span>
-          {room.size && (
-            <span className="flex items-center gap-1">
-              <Maximize2 size={12} /> {room.size}
-            </span>
-          )}
         </div>
 
         <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-4 line-clamp-2">
@@ -106,15 +101,10 @@ export function RoomTypeCard({ room, isSelected, index, onSelect, onViewPhotos, 
         </div>
 
         <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-700 mb-4">
-          <div>
-            {room.originalPrice && room.originalPrice > room.price && (
-              <p className="text-xs text-gray-400 line-through">{formatPrice(room.originalPrice)}</p>
-            )}
-            <p className="font-bold text-[#8B4513] dark:text-amber-400 text-lg">
-              {formatPrice(room.price)}
-              <span className="text-xs font-normal text-gray-400">/night</span>
-            </p>
-          </div>
+          <p className="font-bold text-[#8B4513] dark:text-amber-400 text-lg">
+            {formatPrice(room.price)}
+            <span className="text-xs font-normal text-gray-400">/night</span>
+          </p>
         </div>
 
         <div className="grid grid-cols-2 gap-2">

@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import { cabServices } from "@/lib/data/experiences";
-import { Car, Phone } from "lucide-react";
+import { Car, Phone, Check, Clock, Users } from "lucide-react";
+import { getWhatsAppUrl, genericInquiryMessage } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
-  title: "Cab Services in Varanasi — Airport Pickup, Sightseeing & Outstation",
+  title: "Cab Services in Varanasi — Dzire, Ertiga, Tempo Traveller",
   description:
-    "Book reliable cabs in Varanasi. Airport transfers, local sightseeing, outstation trips to Sarnath, Prayagraj, Ayodhya. Tempo traveller & luxury cars available.",
+    "Book reliable cabs in Varanasi. Dzire, Carens/Ertiga, 8-Seater for local sightseeing, outstation trips to Prayagraj, Ayodhya, Bodhgaya. Tour packages available.",
+};
+
+const vehicleImages: Record<string, string> = {
+  "/dzire.jpg": "/dzire.jpg",
+  "/carens.jpg": "/carens.jpg",
+  "/urbania1.jpg": "/urbania1.jpg",
+  "/crysta1.jpg": "/crysta1.jpg",
 };
 
 export default function CabsPage() {
@@ -29,54 +37,94 @@ export default function CabsPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-          {cabServices.map((cab, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {cabServices.map((cab) => (
             <div
               key={cab.id}
-              className="group bg-white dark:bg-gray-800 rounded-3xl p-7 shadow-card hover:shadow-luxury transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:-translate-y-2 relative overflow-hidden"
+              className="group bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-card hover:shadow-luxury transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:-translate-y-2"
             >
-              <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${cab.color}`} />
-              <div className={`absolute -top-8 -right-8 w-24 h-24 rounded-full bg-gradient-to-br ${cab.color} opacity-5 group-hover:opacity-10 transition-opacity`} />
-
-              <div className="text-5xl mb-5">{cab.icon}</div>
-              <h3 className="font-semibold text-gray-900 dark:text-white text-xl mb-2">{cab.name}</h3>
-              <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">{cab.description}</p>
-
-              <div className="flex flex-wrap gap-2 mb-5">
-                {cab.vehicles.map((v) => (
-                  <span key={v} className="px-3 py-1 bg-gray-50 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-xs rounded-full border border-gray-200 dark:border-gray-600">
-                    {v}
+              {/* Image */}
+              <div className="relative h-52 sm:h-56 overflow-hidden">
+                <img
+                  src={vehicleImages[cab.image] || cab.image}
+                  alt={cab.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h3 className="font-serif text-xl font-bold text-white">{cab.title}</h3>
+                  <p className="text-white/80 text-sm">{cab.subtitle}</p>
+                </div>
+                {cab.badge && (
+                  <span className="absolute top-4 right-4 px-3 py-1 bg-amber-500 text-white text-xs font-semibold rounded-full">
+                    {cab.badge}
                   </span>
-                ))}
+                )}
               </div>
 
-              <p className={`font-bold text-lg bg-gradient-to-r ${cab.color} bg-clip-text text-transparent mb-5`}>
-                {cab.price}
-              </p>
+              {/* Content */}
+              <div className="p-6">
+                {/* Price + Duration row */}
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <span className="text-2xl font-bold text-amber-600 dark:text-amber-400">
+                      ₹{cab.price.toLocaleString()}
+                    </span>
+                    <span className="text-gray-400 text-sm ml-1">/ {cab.duration}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-gray-500 dark:text-gray-400 text-sm">
+                    <Users size={15} />
+                    <span>{cab.vehicleType}</span>
+                  </div>
+                </div>
 
-              <div className="flex gap-2">
-                <button className={`flex-1 py-2.5 bg-gradient-to-r ${cab.color} text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:scale-[1.02] transition-all flex items-center justify-center gap-2`}>
-                  <Car size={15} /> Book Now
-                </button>
-                <a
-                  href="tel:+919876543210"
-                  className="px-4 py-2.5 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 rounded-xl text-sm hover:border-amber-300 hover:text-amber-600 transition-colors flex items-center gap-1.5"
-                >
-                  <Phone size={14} /> Call
-                </a>
+                {/* Features list */}
+                <ul className="space-y-2 mb-6">
+                  {cab.features.map((feature, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm text-gray-600 dark:text-gray-300">
+                      <Check size={16} className="text-green-500 mt-0.5 shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Action buttons */}
+                <div className="flex gap-2">
+                  <a
+                    href={getWhatsAppUrl(
+                      `Hi! I'm interested in booking the *${cab.title}* (${cab.vehicleType}) for *${cab.duration}*. Please share details and availability.`
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 py-2.5 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
+                  >
+                    <Car size={15} /> Book Now
+                  </a>
+                  <a
+                    href="tel:+919876543210"
+                    className="px-4 py-2.5 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 rounded-xl text-sm hover:border-amber-300 hover:text-amber-600 transition-colors flex items-center gap-1.5"
+                  >
+                    <Phone size={14} /> Call
+                  </a>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
         {/* Custom enquiry */}
-        <div className="bg-gradient-to-r from-[#8B4513] via-[#FF9933] to-[#FFD54F] rounded-3xl p-8 sm:p-12 text-center text-white">
+        <div className="bg-gradient-to-r from-[#8B4513] via-[#FF9933] to-[#FFD54F] rounded-3xl p-8 sm:p-12 text-center text-white mt-10">
           <h2 className="font-serif text-3xl font-bold mb-3">Need a Custom Fleet?</h2>
           <p className="text-white/80 mb-6 max-w-lg mx-auto">
             Group pilgrimages, corporate events, or airport-to-ghats for your entire family. Get a custom quote instantly.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://wa.me/919876543210" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-[#8B4513] rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all">
+            <a
+              href={getWhatsAppUrl(genericInquiryMessage("a custom fleet or group booking quote"))}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-[#8B4513] rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all"
+            >
               💬 WhatsApp Now
             </a>
             <a href="tel:+919876543210" className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-all">

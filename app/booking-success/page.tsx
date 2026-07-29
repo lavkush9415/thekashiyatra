@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle } from "lucide-react";
+import { getWhatsAppUrl, genericInquiryMessage } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Booking Confirmed — Kashi Darshan",
@@ -67,7 +68,12 @@ export default function BookingSuccessPage() {
           <Link href="/" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all">
             Return Home
           </Link>
-          <a href="https://wa.me/919876543210" className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-green-500 text-green-600 dark:text-green-400 rounded-full font-semibold hover:bg-green-50 dark:hover:bg-green-500/10 transition-colors">
+          <a
+            href={getWhatsAppUrl(genericInquiryMessage("a question about my recent booking"))}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-green-500 text-green-600 dark:text-green-400 rounded-full font-semibold hover:bg-green-50 dark:hover:bg-green-500/10 transition-colors"
+          >
             💬 WhatsApp Us
           </a>
         </div>

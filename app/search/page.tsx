@@ -6,32 +6,32 @@ import Image from "next/image";
 import Link from "next/link";
 import { Search, Star, MapPin, Clock } from "lucide-react";
 import { hotels } from "@/lib/data/hotels";
-import { boats } from "@/lib/data/boats";
+import { boatRides } from "@/lib/data/boats";
 import { packages } from "@/lib/data/packages";
 import { experiences } from "@/lib/data/experiences";
 import { formatPrice } from "@/lib/utils";
 
 const allResults = [
   ...hotels.map((h) => ({
-    id: h.id,
+    id: h.slug,
     type: "Hotel" as const,
     name: h.name,
     description: h.description,
     image: h.image,
-    price: h.price,
+    price: h.pricePerNight,
     rating: h.rating,
-    href: `/hotels/${h.id}`,
+    href: `/hotels/${h.slug}`,
     badge: h.badge,
     location: h.location,
   })),
-  ...boats.map((b) => ({
+  ...boatRides.map((b) => ({
     id: b.id,
     type: "Boat" as const,
-    name: b.name,
+    name: b.title,
     description: b.description,
     image: b.image,
     price: b.price,
-    rating: b.rating,
+    rating: 0,
     href: `/boats/${b.id}`,
     badge: b.badge,
     location: "Varanasi Ghats",
@@ -39,14 +39,14 @@ const allResults = [
   ...packages.map((p) => ({
     id: p.id,
     type: "Package" as const,
-    name: p.name,
-    description: p.description,
+    name: p.title,
+    description: p.subtitle,
     image: p.image,
     price: p.price,
     rating: p.rating,
     href: `/packages/${p.id}`,
     badge: p.badge,
-    location: p.destinations.join(" + "),
+    location: "Varanasi",
   })),
   ...experiences.map((e) => ({
     id: e.id,

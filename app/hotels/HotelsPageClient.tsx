@@ -3,16 +3,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { Star, Heart, MapPin, Filter, Search } from "lucide-react";
 import { Hotel } from "@/lib/data/hotels";
 import { formatPrice } from "@/lib/utils";
 import { useToast } from "@/components/providers/ToastProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-
-const categories = ["All", "luxury", "heritage", "premium", "standard"];
+import { getWhatsAppUrl, hotelBookingMessage } from "@/lib/whatsapp";
 
 export function HotelsPageClient({ hotels }: { hotels: Hotel[] }) {
+  const categories = ["All", ...Array.from(new Set(hotels.map((h) => h.category)))];
   const [wishlist, setWishlist] = useState<string[]>([]);
   const [category, setCategory] = useState("All");
   const [search, setSearch] = useState("");
@@ -105,12 +104,12 @@ export function HotelsPageClient({ hotels }: { hotels: Hotel[] }) {
                   </span>
                 )}
                 <button
-                  onClick={() => toggleWishlist(hotel.id, hotel.name)}
+                  onClick={() => toggleWishlist(hotel.slug, hotel.name)}
                   className={`absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center backdrop-blur-sm transition-all ${
-                    wishlist.includes(hotel.id) ? "bg-red-500 text-white" : "bg-white/80 text-gray-600 hover:text-red-500"
+                    wishlist.includes(hotel.slug) ? "bg-red-500 text-white" : "bg-white/80 text-gray-600 hover:text-red-500"
                   }`}
                 >
-                  <Heart size={16} className={wishlist.includes(hotel.id) ? "fill-current" : ""} />
+                  <Heart size={16} className={wishlist.includes(hotel.slug) ? "fill-current" : ""} />
                 </button>
               </div>
 
@@ -134,12 +133,16 @@ export function HotelsPageClient({ hotels }: { hotels: Hotel[] }) {
                 </div>
                 <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-700">
                   <div>
-                    <p className="text-xs text-gray-400 line-through">{formatPrice(hotel.originalPrice)}</p>
-                    <p className="font-bold text-[#8B4513] dark:text-amber-400 text-lg">{formatPrice(hotel.price)}<span className="text-xs font-normal text-gray-400">/night</span></p>
+                    <p className="font-bold text-[#8B4513] dark:text-amber-400 text-lg">{formatPrice(hotel.pricePerNight)}<span className="text-xs font-normal text-gray-400">/night</span></p>
                   </div>
-                  <Link href={`/hotels/${hotel.id}`} className="px-5 py-2.5 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all">
+                  <a
+                    href={getWhatsAppUrl(hotelBookingMessage({ hotelName: hotel.name, price: hotel.pricePerNight }))}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-5 py-2.5 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all"
+                  >
                     View & Book
-                  </Link>
+                  </a>
                 </div>
               </div>
             </motion.div>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUp } from "lucide-react";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 export function ScrollProgressBar() {
   const [progress, setProgress] = useState(0);
@@ -52,7 +53,7 @@ export function ScrollProgressBar() {
 export function WhatsAppButton() {
   return (
     <motion.a
-      href="https://wa.me/919876543210?text=Hello%2C%20I%20want%20to%20book%20a%20trip%20to%20Kashi!"
+      href={getWhatsAppUrl("Hello, I want to book a trip to Kashi!")}
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0 }}

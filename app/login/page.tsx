@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Login — Kashi Darshan",
@@ -69,7 +70,12 @@ export default function LoginPage() {
                 </svg>
                 Google
               </button>
-              <a href="https://wa.me/919876543210?text=I+want+to+login+to+Kashi+Darshan" className="flex items-center justify-center gap-2 py-3 border border-gray-200 dark:border-gray-700 rounded-xl text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+              <a
+                href={getWhatsAppUrl("I want to login to Kashi Darshan")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 py-3 border border-gray-200 dark:border-gray-700 rounded-xl text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              >
                 <span className="text-green-500">💬</span> WhatsApp
               </a>
             </div>

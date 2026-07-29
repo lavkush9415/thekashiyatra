@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { HeroSection } from "@/components/home/HeroSection";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { FeaturedHotels } from "@/components/home/FeaturedHotels";
+import { SectionDivider } from "@/components/ui/SectionDivider";
 import { BoatBooking } from "@/components/home/BoatBooking";
 import { TourPackages } from "@/components/home/TourPackages";
 import { CabServices } from "@/components/home/CabServices";
@@ -24,6 +25,7 @@ export default function HomePage() {
       <HeroSection />
       <WhyChooseUs />
       <FeaturedHotels />
+      <SectionDivider />
       <BoatBooking />
       <TourPackages />
       <CabServices />

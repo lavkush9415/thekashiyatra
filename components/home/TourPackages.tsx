@@ -3,10 +3,11 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Star, Clock, Users, MapPin, ChevronRight, Check } from "lucide-react";
+import { Star, Clock, Users, ChevronRight, Check } from "lucide-react";
 import { packages } from "@/lib/data/packages";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { formatPrice } from "@/lib/utils";
+import { getWhatsAppUrl, packageBookingMessage } from "@/lib/whatsapp";
 
 export function TourPackages() {
   return (
@@ -47,7 +48,7 @@ export function TourPackages() {
                 <div className="relative h-48 overflow-hidden">
                   <Image
                     src={pkg.image}
-                    alt={pkg.name}
+                    alt={pkg.title}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -84,25 +85,23 @@ export function TourPackages() {
                 {/* Content */}
                 <div className="p-5 flex flex-col flex-1">
                   <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-1.5 group-hover:text-[#FF9933] transition-colors">
-                    {pkg.name}
+                    {pkg.title}
                   </h3>
 
-                  {/* Destinations */}
+                  <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-1 line-clamp-1">
+                    {pkg.subtitle}
+                  </p>
+
+                  {/* Category */}
                   <div className="flex items-center gap-1.5 text-gray-500 dark:text-gray-400 text-xs mb-3">
-                    <MapPin size={11} />
-                    <span>{pkg.destinations.join(" + ")}</span>
-                    <span className="ml-auto px-2 py-0.5 bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-full text-xs capitalize">
+                    <span className="px-2 py-0.5 bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-full text-xs capitalize">
                       {pkg.category}
                     </span>
                   </div>
 
-                  <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-4 line-clamp-2">
-                    {pkg.description}
-                  </p>
-
-                  {/* Includes */}
+                  {/* Services */}
                   <div className="grid grid-cols-2 gap-1.5 mb-4">
-                    {pkg.includes.slice(0, 4).map((item) => (
+                    {pkg.services.slice(0, 4).map((item) => (
                       <div key={item} className="flex items-center gap-1.5 text-xs text-gray-600 dark:text-gray-400">
                         <Check size={11} className="text-green-500 shrink-0" />
                         <span className="line-clamp-1">{item}</span>
@@ -119,16 +118,14 @@ export function TourPackages() {
                       </p>
                     </div>
                     <div className="flex gap-2">
-                      <div className="flex items-center gap-1 text-xs text-gray-500">
-                        <Users size={11} />
-                        Max {pkg.maxGuests}
-                      </div>
-                      <Link
-                        href={`/packages/${pkg.id}`}
+                      <a
+                        href={getWhatsAppUrl(packageBookingMessage({ packageName: pkg.title, price: pkg.price }))}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="px-4 py-2 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200"
                       >
                         Book
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 </div>

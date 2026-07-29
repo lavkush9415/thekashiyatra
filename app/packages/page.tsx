@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { packages } from "@/lib/data/packages";
 import { formatPrice } from "@/lib/utils";
-import { Star, Clock, Users, MapPin, Check } from "lucide-react";
+import { Star, Clock, Check } from "lucide-react";
+import { getWhatsAppUrl, packageBookingMessage } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Varanasi Tour Packages — 1 Day to 5 Day Spiritual Tours",
@@ -45,7 +45,7 @@ export default function PackagesPage() {
                 <div className="relative h-52 overflow-hidden">
                   <Image
                     src={pkg.image}
-                    alt={pkg.name}
+                    alt={pkg.title}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -64,15 +64,14 @@ export default function PackagesPage() {
                 </div>
 
                 <div className="p-5 flex flex-col flex-1">
-                  <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-1 group-hover:text-[#FF9933] transition-colors">{pkg.name}</h3>
+                  <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-1 group-hover:text-[#FF9933] transition-colors">{pkg.title}</h3>
+                  <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-1 line-clamp-1">{pkg.subtitle}</p>
                   <div className="flex items-center gap-1.5 text-gray-500 text-xs mb-2">
-                    <MapPin size={11} />{pkg.destinations.join(" + ")}
-                    <span className="ml-auto capitalize px-2 py-0.5 bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-full">{pkg.category}</span>
+                    <span className="capitalize px-2 py-0.5 bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-full">{pkg.category}</span>
                   </div>
-                  <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-3 line-clamp-2">{pkg.description}</p>
 
                   <div className="grid grid-cols-2 gap-1.5 mb-4">
-                    {pkg.includes.slice(0, 4).map((item) => (
+                    {pkg.services.slice(0, 4).map((item) => (
                       <div key={item} className="flex items-center gap-1.5 text-xs text-gray-600 dark:text-gray-400">
                         <Check size={11} className="text-green-500 shrink-0" />
                         <span className="line-clamp-1">{item}</span>
@@ -85,12 +84,14 @@ export default function PackagesPage() {
                       <p className="text-xs text-gray-400 line-through">{formatPrice(pkg.originalPrice)}</p>
                       <p className="font-bold text-[#8B4513] dark:text-amber-400 text-xl">{formatPrice(pkg.price)}<span className="text-xs font-normal text-gray-400">/person</span></p>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="flex items-center gap-1 text-xs text-gray-500"><Users size={11} />Max {pkg.maxGuests}</span>
-                      <Link href={`/packages/${pkg.id}`} className="px-4 py-2 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all">
-                        Book
-                      </Link>
-                    </div>
+                    <a
+                      href={getWhatsAppUrl(packageBookingMessage({ packageName: pkg.title, price: pkg.price }))}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all"
+                    >
+                      Book
+                    </a>
                   </div>
                 </div>
               </div>

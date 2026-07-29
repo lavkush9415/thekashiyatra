@@ -7,18 +7,19 @@ import Link from "next/link";
 import { hotels } from "@/lib/data/hotels";
 import { formatPrice } from "@/lib/utils";
 import { useToast } from "@/components/providers/ToastProvider";
+import { getWhatsAppUrl, hotelBookingMessage } from "@/lib/whatsapp";
 
 export default function WishlistPage() {
   // Demo: show first 2 hotels as wishlist
-  const [wishlistIds, setWishlistIds] = useState<string[]>([hotels[0].id, hotels[1].id]);
+  const [wishlistIds, setWishlistIds] = useState<string[]>([hotels[0].slug, hotels[1].slug]);
   const { showToast } = useToast();
 
-  const remove = (id: string, name: string) => {
-    setWishlistIds((prev) => prev.filter((i) => i !== id));
+  const remove = (slug: string, name: string) => {
+    setWishlistIds((prev) => prev.filter((i) => i !== slug));
     showToast(`💔 ${name} removed from wishlist`, "info");
   };
 
-  const wishlistHotels = hotels.filter((h) => wishlistIds.includes(h.id));
+  const wishlistHotels = hotels.filter((h) => wishlistIds.includes(h.slug));
 
   return (
     <div className="min-h-screen bg-[#FFF8F0] dark:bg-gray-950 pt-20">
@@ -50,13 +51,18 @@ export default function WishlistPage() {
                 <div className="p-4 flex-1 min-w-0">
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1 text-sm">{hotel.name}</h3>
                   <p className="text-gray-500 text-xs mb-2">{hotel.location}</p>
-                  <p className="font-bold text-[#8B4513] dark:text-amber-400">{formatPrice(hotel.price)}<span className="text-xs font-normal text-gray-400">/night</span></p>
+                  <p className="font-bold text-[#8B4513] dark:text-amber-400">{formatPrice(hotel.pricePerNight)}<span className="text-xs font-normal text-gray-400">/night</span></p>
                   <div className="flex gap-2 mt-3">
-                    <Link href={`/hotels/${hotel.id}`} className="flex-1 py-1.5 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-lg text-xs font-semibold text-center">
+                    <a
+                      href={getWhatsAppUrl(hotelBookingMessage({ hotelName: hotel.name, price: hotel.pricePerNight }))}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 py-1.5 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-lg text-xs font-semibold text-center"
+                    >
                       Book Now
-                    </Link>
+                    </a>
                     <button
-                      onClick={() => remove(hotel.id, hotel.name)}
+                      onClick={() => remove(hotel.slug, hotel.name)}
                       className="px-2.5 py-1.5 border border-red-200 dark:border-red-500/30 text-red-500 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors"
                     >
                       <Trash2 size={14} />
