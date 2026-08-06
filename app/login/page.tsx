@@ -3,8 +3,8 @@ import Link from "next/link";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
-  title: "Login — Kashi Darshan",
-  description: "Login to your Kashi Darshan account to manage bookings, view history, and more.",
+  title: "Login — TheKashiYatra",
+  description: "Login to your TheKashiYatra account to manage bookings, view history, and more.",
 };
 
 export default function LoginPage() {
@@ -16,7 +16,7 @@ export default function LoginPage() {
           <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mx-auto mb-4 shadow-xl">
             <span className="text-white text-3xl">ॐ</span>
           </div>
-          <h1 className="font-serif text-3xl font-bold gradient-text">Kashi Darshan</h1>
+          <h1 className="font-serif text-3xl font-bold gradient-text">TheKashiYatra</h1>
           <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Welcome back, pilgrim</p>
         </div>
 
@@ -71,7 +71,7 @@ export default function LoginPage() {
                 Google
               </button>
               <a
-                href={getWhatsAppUrl("I want to login to Kashi Darshan")}
+                href={getWhatsAppUrl("I want to login to TheKashiYatra")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 py-3 border border-gray-200 dark:border-gray-700 rounded-xl text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"

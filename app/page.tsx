@@ -14,7 +14,7 @@ import { FAQSection } from "@/components/home/FAQSection";
 import { ContactSection } from "@/components/home/ContactSection";
 
 export const metadata: Metadata = {
-  title: "Kashi Darshan — Experience the Soul of Kashi | Varanasi Travel & Pilgrimage",
+  title: "TheKashiYatra — Experience the Soul of Kashi | Varanasi Travel & Pilgrimage",
   description:
     "Book premium hotels, sacred boat rides, temple tours, and spiritual experiences in Varanasi. Your trusted pilgrimage partner since 2016.",
 };

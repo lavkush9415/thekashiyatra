@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/admin/", "/_next/"],
       },
     ],
-    sitemap: "https://kashidarshan.com/sitemap.xml",
-    host: "https://kashidarshan.com",
+    sitemap: "https://thekashiyatra.com/sitemap.xml",
+    host: "https://thekashiyatra.com",
   };
 }

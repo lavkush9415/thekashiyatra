@@ -91,16 +91,12 @@ export function CabServices() {
                 </ul>
 
                 {/* Book Now button */}
-                <a
-                  href={getWhatsAppUrl(
-                    `Hi! I'm interested in booking the *${cab.title}* (${cab.vehicleType}) for *${cab.duration}*. Please share details and availability.`
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href={`/cabs/${cab.slug}`}
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all w-full justify-center"
                 >
-                  <Car size={13} /> Book Now
-                </a>
+                  <Car size={13} /> View Details
+                </Link>
               </div>
             </motion.div>
           ))}

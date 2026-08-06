@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Blog — Kashi Darshan Travel Guide & Spiritual Insights",
+  title: "Blog — TheKashiYatra Travel Guide & Spiritual Insights",
   description: "Read our Varanasi travel guides, temple insights, ghat stories, and tips for the perfect pilgrimage to Kashi.",
 };
 

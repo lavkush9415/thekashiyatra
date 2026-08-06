@@ -56,7 +56,7 @@ export function WhyChooseUs() {
         <div className="mb-12">
           <SectionHeading
             badge="Why Choose Us"
-            title="The Kashi Darshan"
+            title="TheKashiYatra"
             highlightedWord=" Promise"
             subtitle="We don't just book trips — we craft sacred journeys. Here's what sets us apart."
           />

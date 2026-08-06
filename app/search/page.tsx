@@ -25,38 +25,38 @@ const allResults = [
     location: h.location,
   })),
   ...boatRides.map((b) => ({
-    id: b.id,
+    id: b.slug,
     type: "Boat" as const,
     name: b.title,
     description: b.description,
     image: b.image,
     price: b.price,
     rating: 0,
-    href: `/boats/${b.id}`,
+    href: `/boats/${b.slug}`,
     badge: b.badge,
     location: "Varanasi Ghats",
   })),
   ...packages.map((p) => ({
-    id: p.id,
+    id: p.slug,
     type: "Package" as const,
     name: p.title,
     description: p.subtitle,
     image: p.image,
     price: p.price,
     rating: p.rating,
-    href: `/packages/${p.id}`,
+    href: `/packages/${p.slug}`,
     badge: p.badge,
     location: "Varanasi",
   })),
   ...experiences.map((e) => ({
-    id: e.id,
+    id: e.slug,
     type: "Experience" as const,
     name: e.name,
     description: e.description,
     image: e.image,
     price: e.price,
     rating: e.rating,
-    href: `/experiences`,
+    href: e.slug === "ganga-aarti-ceremony" ? "/ganga-aarti" : `/experiences/${e.slug}`,
     badge: e.badge,
     location: "Varanasi",
   })),
@@ -85,7 +85,7 @@ function SearchContent() {
       {/* Search Header */}
       <div className="bg-gradient-to-br from-[#8B4513] to-[#FF9933] py-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="font-serif text-4xl font-bold text-white mb-6">Search Kashi Darshan</h1>
+          <h1 className="font-serif text-4xl font-bold text-white mb-6">Search TheKashiYatra</h1>
           <div className="relative">
             <Search size={20} className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400" />
             <input

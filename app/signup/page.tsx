@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Sign Up — Create Your Kashi Darshan Account",
-  description: "Create your free Kashi Darshan account to book hotels, boats, packages, and manage your pilgrimage bookings.",
+  title: "Sign Up — Create Your TheKashiYatra Account",
+  description: "Create your free TheKashiYatra account to book hotels, boats, packages, and manage your pilgrimage bookings.",
 };
 
 export default function SignupPage() {
@@ -14,7 +14,7 @@ export default function SignupPage() {
           <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mx-auto mb-4 shadow-xl">
             <span className="text-white text-3xl">ॐ</span>
           </div>
-          <h1 className="font-serif text-3xl font-bold gradient-text">Join Kashi Darshan</h1>
+          <h1 className="font-serif text-3xl font-bold gradient-text">Join TheKashiYatra</h1>
           <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Begin your divine journey today</p>
         </div>
 

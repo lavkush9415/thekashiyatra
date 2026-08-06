@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Cancellation Policy — Kashi Darshan",
-  description: "Understand the Kashi Darshan cancellation and refund policy for hotels, boats, packages, and experiences.",
+  title: "Cancellation Policy — TheKashiYatra",
+  description: "Understand the TheKashiYatra cancellation and refund policy for hotels, boats, packages, and experiences.",
 };
 
 export default function CancellationPage() {
@@ -91,7 +91,7 @@ export default function CancellationPage() {
         <div className="mt-8 bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
           <h2 className="font-semibold text-gray-900 dark:text-white mb-3">How to Cancel</h2>
           <ol className="space-y-2 text-sm text-gray-600 dark:text-gray-400 list-decimal list-inside">
-            <li>Log in to your Kashi Darshan account</li>
+            <li>Log in to your TheKashiYatra account</li>
             <li>Go to Booking History</li>
             <li>Select the booking you wish to cancel</li>
             <li>Click &ldquo;Cancel Booking&rdquo; and confirm</li>

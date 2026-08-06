@@ -3,12 +3,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { Star, Heart, MapPin, Filter, Search } from "lucide-react";
 import { Hotel } from "@/lib/data/hotels";
 import { formatPrice } from "@/lib/utils";
 import { useToast } from "@/components/providers/ToastProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { getWhatsAppUrl, hotelBookingMessage } from "@/lib/whatsapp";
 
 export function HotelsPageClient({ hotels }: { hotels: Hotel[] }) {
   const categories = ["All", ...Array.from(new Set(hotels.map((h) => h.category)))];
@@ -89,6 +89,7 @@ export function HotelsPageClient({ hotels }: { hotels: Hotel[] }) {
               transition={{ delay: index * 0.08 }}
               className="group bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-card hover:shadow-luxury transition-all duration-300 border border-gray-100 dark:border-gray-700"
             >
+              <Link href={`/hotels/${hotel.slug}`} className="block">
               <div className="relative h-56 overflow-hidden">
                 <Image
                   src={hotel.image}
@@ -104,7 +105,7 @@ export function HotelsPageClient({ hotels }: { hotels: Hotel[] }) {
                   </span>
                 )}
                 <button
-                  onClick={() => toggleWishlist(hotel.slug, hotel.name)}
+                  onClick={(e) => { e.preventDefault(); toggleWishlist(hotel.slug, hotel.name); }}
                   className={`absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center backdrop-blur-sm transition-all ${
                     wishlist.includes(hotel.slug) ? "bg-red-500 text-white" : "bg-white/80 text-gray-600 hover:text-red-500"
                   }`}
@@ -135,16 +136,12 @@ export function HotelsPageClient({ hotels }: { hotels: Hotel[] }) {
                   <div>
                     <p className="font-bold text-[#8B4513] dark:text-amber-400 text-lg">{formatPrice(hotel.pricePerNight)}<span className="text-xs font-normal text-gray-400">/night</span></p>
                   </div>
-                  <a
-                    href={getWhatsAppUrl(hotelBookingMessage({ hotelName: hotel.name, price: hotel.pricePerNight }))}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-2.5 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all"
-                  >
-                    View & Book
-                  </a>
+                  <span className="px-5 py-2.5 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all">
+                    View Details
+                  </span>
                 </div>
               </div>
+              </Link>
             </motion.div>
           ))}
         </div>

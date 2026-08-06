@@ -7,7 +7,6 @@ import { Clock, Users, ChevronRight } from "lucide-react";
 import { boatRides } from "@/lib/data/boats";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { formatPrice } from "@/lib/utils";
-import { getWhatsAppUrl, boatBookingMessage } from "@/lib/whatsapp";
 
 export function BoatBooking() {
   return (
@@ -98,16 +97,12 @@ export function BoatBooking() {
                       <span className="text-xs font-normal text-gray-400">/person</span>
                     </p>
                   </div>
-                  <a
-                    href={getWhatsAppUrl(
-                      boatBookingMessage({ boatName: boat.title, price: boat.price })
-                    )}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href={`/boats/${boat.slug}`}
                     className="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-orange-600 text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:shadow-amber-500/30 hover:scale-105 transition-all duration-200"
                   >
-                    Book Ride
-                  </a>
+                    View Details
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -145,16 +140,12 @@ export function BoatBooking() {
               </div>
               <div className="text-right shrink-0">
                 <p className="font-bold text-amber-600 text-base">{formatPrice(boat.price)}</p>
-                <a
-                  href={getWhatsAppUrl(
-                    boatBookingMessage({ boatName: boat.title, price: boat.price })
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href={`/boats/${boat.slug}`}
                   className="text-xs text-gray-400 hover:text-amber-600 transition-colors"
                 >
-                  Book →
-                </a>
+                  View →
+                </Link>
               </div>
             </motion.div>
           ))}

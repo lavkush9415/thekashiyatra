@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions — Kashi Darshan",
-  description: "Read the terms and conditions for using Kashi Darshan travel booking services.",
+  title: "Terms & Conditions — TheKashiYatra",
+  description: "Read the terms and conditions for using TheKashiYatra travel booking services.",
 };
 
 export default function TermsPage() {
@@ -20,11 +20,11 @@ export default function TermsPage() {
           {[
             {
               title: "1. Acceptance of Terms",
-              content: "By accessing and using Kashi Darshan's website and services, you accept and agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our services."
+              content: "By accessing and using TheKashiYatra's website and services, you accept and agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our services."
             },
             {
               title: "2. Booking Services",
-              content: "Kashi Darshan acts as a booking platform connecting travelers with hotels, boat operators, tour guides, and other service providers. We facilitate bookings but are not directly responsible for the services provided by third parties."
+              content: "TheKashiYatra acts as a booking platform connecting travelers with hotels, boat operators, tour guides, and other service providers. We facilitate bookings but are not directly responsible for the services provided by third parties."
             },
             {
               title: "3. Payment Terms",
@@ -40,11 +40,11 @@ export default function TermsPage() {
             },
             {
               title: "6. Liability Limitation",
-              content: "Kashi Darshan's liability is limited to the amount paid for the specific service booked. We are not responsible for any indirect, incidental, or consequential damages arising from the use of our services."
+              content: "TheKashiYatra's liability is limited to the amount paid for the specific service booked. We are not responsible for any indirect, incidental, or consequential damages arising from the use of our services."
             },
             {
               title: "7. Intellectual Property",
-              content: "All content on this website including text, images, logos, and design is the property of Kashi Darshan and is protected by copyright law. Unauthorized use is strictly prohibited."
+              content: "All content on this website including text, images, logos, and design is the property of TheKashiYatra and is protected by copyright law. Unauthorized use is strictly prohibited."
             },
             {
               title: "8. Governing Law",
@@ -52,7 +52,7 @@ export default function TermsPage() {
             },
             {
               title: "9. Contact",
-              content: "For questions about these Terms, contact us at legal@kashidarshan.com or call +91 98765 43210."
+              content: "For questions about these Terms, contact us at legal@thekashiyatra.com or call +91 98765 43210."
             },
           ].map((section) => (
             <div key={section.title} className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">

@@ -1,17 +1,22 @@
 export interface Experience {
   id: string;
+  slug: string;
   name: string;
   category: "spiritual" | "cultural" | "wellness" | "adventure";
   duration: string;
   timing: string;
   price: number;
   image: string;
+  gallery: string[];
   icon: string;
   rating: number;
   reviews: number;
   description: string;
+  fullDescription: string;
   includes: string[];
   highlights: string[];
+  importantNotes: string[];
+  bookingInfo: string;
   badge?: string;
   color: string;
   bgGradient: string;
@@ -20,36 +25,56 @@ export interface Experience {
 export const experiences: Experience[] = [
   {
     id: "ganga-aarti",
+    slug: "ganga-aarti-ceremony",
     name: "Ganga Aarti Ceremony",
     category: "spiritual",
     duration: "1.5 hours",
     timing: "6:30 PM – 8:00 PM",
     price: 0,
     image: "/gangaaarti1.jpg",
+    gallery: ["/gangaaarti1.jpg", "/aarti.jpg", "/gangaaarti.png", "/gangaarti1.png", "/evening.jpg"],
     icon: "🪔",
     rating: 5.0,
     reviews: 8920,
     description: "Witness the magnificent Ganga Aarti at Dasaswamedh Ghat — a profound ritual of fire, chanting, and devotion.",
+    fullDescription: "The Ganga Aarti at Dashashwamedh Ghat is one of the most spectacular spiritual ceremonies in the world. Every evening, as the sun sets over the sacred Ganga, priests in saffron robes perform a synchronized ritual of fire, incense, and chanting. The air fills with the sound of conch shells, bells, and devotional hymns as thousands of oil lamps are raised in offering to the river goddess. This deeply moving experience connects you to 3,000 years of living tradition and is the highlight of any visit to Varanasi.",
     includes: ["Guided viewing spot", "Cultural commentary", "Photo guidance", "Flowers for offering"],
     highlights: ["Best viewing spot", "Evening ritual", "Photography tips", "Spiritual immersion"],
+    importantNotes: [
+      "Arrive 30 minutes early for the best viewing spot",
+      "Photography is allowed but flash is discouraged",
+      "Dress modestly as this is a religious ceremony",
+      "The aarti lasts approximately 45 minutes",
+    ],
+    bookingInfo: "Free to attend. Premium viewing spots and boat viewing available at extra cost. Book in advance during peak season.",
     badge: "Free Experience",
     color: "text-orange-500",
     bgGradient: "from-orange-500/20 to-yellow-500/20",
   },
   {
     id: "temple-tour",
+    slug: "kashi-temple-circuit",
     name: "Kashi Temple Circuit",
     category: "spiritual",
     duration: "4 hours",
     timing: "6:00 AM – 10:00 AM",
     price: 1200,
     image: "/kashiyatra.jpg",
+    gallery: ["/kashiyatra.jpg", "/kashivishwanath.png", "/sankatmochan.png", "/durgamandir.png", "/ghats.jpg"],
     icon: "🛕",
     rating: 4.9,
     reviews: 3420,
     description: "Visit the 12 most sacred temples of Kashi with a knowledgeable priest-guide who shares ancient lore.",
+    fullDescription: "Embark on a spiritual journey through the 12 most sacred temples of Kashi with our expert priest-guide. From the iconic Kashi Vishwanath Temple, one of the 12 Jyotirlingas, to the fierce Kal Bhairav and the serene Sankat Mochan, each temple has its own unique story and significance. Your guide will share ancient lore, help with rituals, and ensure you experience the true spiritual essence of the city of light.",
     includes: ["Expert guide", "Prasad", "Temple entry assistance", "Transport"],
     highlights: ["Kashi Vishwanath", "Kal Bhairav", "Annapurna Temple", "Sankat Mochan"],
+    importantNotes: [
+      "Temple dress code applies — shoulders and knees covered",
+      "Mobile phones may need to be deposited at some temples",
+      "Early morning start recommended to avoid crowds",
+      "Comfortable walking shoes essential",
+    ],
+    bookingInfo: "Book at least 24 hours in advance. Group size limited to 10 for personalized attention.",
     badge: "Spiritual Favorite",
     color: "text-red-500",
     bgGradient: "from-red-500/20 to-pink-500/20",
@@ -92,18 +117,28 @@ export const experiences: Experience[] = [
   // },
   {
     id: "subah-e-banaras",
+    slug: "subah-e-banaras",
     name: "Subah-e-Banaras",
     category: "cultural",
     duration: "2 hours",
     timing: "5:30 AM – 7:30 AM",
     price: 800,
     image: "/sunriseboat.png",
+    gallery: ["/sunriseboat.png", "/sunrise1.jpg", "/ghats.jpg", "/boats.jpg", "/varansighat.png"],
     icon: "🌅",
     rating: 4.9,
     reviews: 2140,
     description: "Experience the magical 'Morning of Banaras' — the cultural sunrise program at Assi Ghat with classical music.",
+    fullDescription: "Subah-e-Banaras is a mesmerizing cultural program that unfolds every morning at the historic Assi Ghat. As the first rays of the sun touch the sacred Ganga, classical musicians perform soulful ragas, yoga instructors lead gentle asanas, and storytellers share the rich cultural heritage of Banaras. This unique experience captures the essence of the city's morning rituals — a perfect blend of music, spirituality, and the timeless beauty of the riverfront.",
     includes: ["Cultural program", "Classical music", "Yoga demo", "Chai"],
     highlights: ["Live classical music", "Morning yoga", "Cultural storytelling", "Sunrise views"],
+    importantNotes: [
+      "Arrive by 5:15 AM to get a good spot",
+      "Bring a mat or shawl to sit on",
+      "Dress comfortably for morning weather",
+      "The program runs rain or shine",
+    ],
+    bookingInfo: "Book in advance to reserve a front-row spot. Group discounts available for 5+ people.",
     badge: "Cultural Gem",
     color: "text-amber-500",
     bgGradient: "from-amber-500/20 to-orange-500/20",
@@ -164,24 +199,34 @@ export const experiences: Experience[] = [
 
 export interface CabService {
   id: number;
+  slug: string;
   title: string;
   subtitle: string;
   image: string;
+  gallery: string[];
   price: number;
   vehicleType: string;
+  seatingCapacity: string;
   duration: string;
   features: string[];
+  routePricing: { route: string; price: string }[];
+  includedServices: string[];
+  driverInfo: string;
+  description: string;
   badge: string;
 }
 
 export const cabServices: CabService[] = [
   {
   id: 1,
+  slug: "dzire-taxi-service",
   title: 'Dzire Taxi Service',
   subtitle: '4 Seater • Local & Outstation Trips',
   image: '/dzire.jpg',
+  gallery: ['/dzire.jpg', '/crysta.png', '/crysta1.jpg'],
   price: 2500,
   vehicleType: 'Dzire (4 Seater)',
+  seatingCapacity: '4 Seater',
   duration: 'Full Day',
   features: [
     'Varanasi Local - ₹2500',
@@ -190,15 +235,28 @@ export const cabServices: CabService[] = [
     'Bodhgaya - ₹6500',
     'Prayagraj + Ayodhya - ₹7500',
   ],
+  routePricing: [
+    { route: 'Varanasi Local', price: '₹2500' },
+    { route: 'Prayagraj', price: '₹3500' },
+    { route: 'Ayodhya', price: '₹6000' },
+    { route: 'Bodhgaya', price: '₹6500' },
+    { route: 'Prayagraj + Ayodhya', price: '₹7500' },
+  ],
+  includedServices: ['Driver', 'Fuel', 'AC', 'All Local Taxes', 'Pickup & Drop'],
+  driverInfo: 'Experienced, verified, and courteous drivers with excellent knowledge of Varanasi and surrounding routes. All drivers are background-checked and trained in safe driving practices.',
+  description: 'The Maruti Suzuki Dzire is our most popular choice for comfortable and economical travel. Perfect for small families and groups of up to 4 people, this sedan offers a smooth ride for both local sightseeing and outstation trips to Prayagraj, Ayodhya, and Bodhgaya.',
   badge: 'Most Booked',
 },
   {
   id: 2,
+  slug: "city-sightseeing-carens",
   title: 'City Sightseeing',
   subtitle: 'Carens / Ertiga • 6 Seater',
   image: '/carens.jpg',
+  gallery: ['/carens.jpg', '/crysta.png', '/crysta1.jpg'],
   price: 3500,
   vehicleType: 'Carens / Ertiga',
+  seatingCapacity: '6 Seater',
   duration: 'Full Day',
   features: [
     'Varanasi Local - ₹3500',
@@ -207,15 +265,28 @@ export const cabServices: CabService[] = [
     'Bodhgaya - ₹7500',
     'Prayagraj + Ayodhya - ₹8500',
   ],
+  routePricing: [
+    { route: 'Varanasi Local', price: '₹3500' },
+    { route: 'Prayagraj', price: '₹4500' },
+    { route: 'Ayodhya', price: '₹7000' },
+    { route: 'Bodhgaya', price: '₹7500' },
+    { route: 'Prayagraj + Ayodhya', price: '₹8500' },
+  ],
+  includedServices: ['Driver', 'Fuel', 'AC', 'All Local Taxes', 'Pickup & Drop'],
+  driverInfo: 'Professional drivers with extensive experience in group and family travel. Comfortable and safe driving for all passengers.',
+  description: 'The Kia Carens or Maruti Ertiga offers spacious seating for up to 6 passengers with ample luggage space. Ideal for families and small groups exploring Varanasi and nearby pilgrimage destinations in comfort.',
   badge: 'Most Booked',
 },
   {
   id: 3,
+  slug: "group-tour-vehicle",
   title: 'Group Tour Vehicle',
   subtitle: '8 Seater • Local & Outstation Trips',
   image: '/urbania1.jpg',
+  gallery: ['/urbania1.jpg', '/crysta.png', '/crysta1.jpg'],
   price: 3500,
   vehicleType: '8 Seater',
+  seatingCapacity: '8 Seater',
   duration: 'Full Day',
   features: [
     'Varanasi Local - ₹3500',
@@ -224,15 +295,28 @@ export const cabServices: CabService[] = [
     'Bodhgaya - ₹8000',
     'Prayagraj + Ayodhya - ₹9000',
   ],
+  routePricing: [
+    { route: 'Varanasi Local', price: '₹3500' },
+    { route: 'Prayagraj', price: '₹5000' },
+    { route: 'Ayodhya', price: '₹7500' },
+    { route: 'Bodhgaya', price: '₹8000' },
+    { route: 'Prayagraj + Ayodhya', price: '₹9000' },
+  ],
+  includedServices: ['Driver', 'Fuel', 'AC', 'All Local Taxes', 'Pickup & Drop'],
+  driverInfo: 'Experienced drivers for group travel with knowledge of all major pilgrimage routes. Safe and comfortable driving for larger groups.',
+  description: 'Our 8-seater vehicles are perfect for group pilgrimages and family reunions. With generous space for passengers and luggage, this is the ideal choice for larger groups traveling to multiple destinations.',
   badge: 'Group Travel',
 },
   {
   id: 4,
+  slug: "varanasi-tour-package-cab",
   title: 'Varanasi Tour Package',
   subtitle: '2 Nights / 3 Days • 4 People',
   image: '/crysta1.jpg',
+  gallery: ['/crysta1.jpg', '/crysta.png', '/dzire.jpg'],
   price: 22000,
   vehicleType: '4 Guests',
+  seatingCapacity: '4 Guests',
   duration: '2N / 3D',
   features: [
     '3 Star Hotel',
@@ -241,6 +325,13 @@ export const cabServices: CabService[] = [
     'Local City Tour',
     '₹5500 Per Person',
   ],
+  routePricing: [
+    { route: 'Complete Package', price: '₹22000' },
+    { route: 'Per Person', price: '₹5500' },
+  ],
+  includedServices: ['3 Star Hotel', 'Breakfast', 'Airport Pickup & Drop', 'Local City Tour', 'Cab with Driver'],
+  driverInfo: 'Dedicated driver for the entire tour duration, ensuring punctual and comfortable travel throughout your stay.',
+  description: 'A complete Varanasi tour package for 4 people including 2 nights of 3-star hotel stay, daily breakfast, airport transfers, and a full local city tour with a private cab and driver. Everything you need for a hassle-free pilgrimage.',
   badge: 'Best Value',
 },
 ];
@@ -264,7 +355,7 @@ export const testimonials: Testimonial[] = [
     location: "Mumbai, Maharashtra",
     avatar: "https://i.pravatar.cc/150?img=47",
     rating: 5,
-    review: "Kashi Darshan made my first Varanasi trip absolutely magical. The sunrise boat ride was ethereal, and our guide Rajan was incredibly knowledgeable. Every detail was taken care of — from hotel check-in to temple VIP darshan. Will definitely return!",
+    review: "TheKashiYatra made my first Varanasi trip absolutely magical. The sunrise boat ride was ethereal, and our guide Rajan was incredibly knowledgeable. Every detail was taken care of — from hotel check-in to temple VIP darshan. Will definitely return!",
     service: "2 Days Spiritual Tour",
     date: "March 2024",
     verified: true,
@@ -275,7 +366,7 @@ export const testimonials: Testimonial[] = [
     location: "Delhi, NCR",
     avatar: "https://i.pravatar.cc/150?img=12",
     rating: 5,
-    review: "The Ganga Aarti from the boat was the most profound experience of my life. The whole package — hotel, boat, temples — was seamlessly organized. Kashi Darshan is truly the best way to experience Banaras.",
+    review: "The Ganga Aarti from the boat was the most profound experience of my life. The whole package — hotel, boat, temples — was seamlessly organized. TheKashiYatra is truly the best way to experience Banaras.",
     service: "Evening Ganga Aarti Cruise",
     date: "January 2024",
     verified: true,
@@ -319,7 +410,7 @@ export const testimonials: Testimonial[] = [
     location: "Jaipur, Rajasthan",
     avatar: "https://i.pravatar.cc/150?img=59",
     rating: 5,
-    review: "Booked the luxury package for my parents' 50th anniversary — they were overjoyed! The palace hotel, private boat, and VIP darshan were perfectly curated. Kashi Darshan truly delivers a 10-lakh experience!",
+    review: "Booked the luxury package for my parents' 50th anniversary — they were overjoyed! The palace hotel, private boat, and VIP darshan were perfectly curated. TheKashiYatra truly delivers a 10-lakh experience!",
     service: "Luxury Kashi Experience",
     date: "October 2023",
     verified: true,
@@ -412,7 +503,7 @@ export const faqs = [
   },
   {
     question: "Are your hotels verified and safe?",
-    answer: "Yes! All hotels listed on Kashi Darshan are personally inspected by our team. We verify hygiene standards, safety measures, service quality, and authenticity before listing them. We have partnerships with 50+ hotels ranging from heritage properties to luxury palaces.",
+    answer: "Yes! All hotels listed on TheKashiYatra are personally inspected by our team. We verify hygiene standards, safety measures, service quality, and authenticity before listing them. We have partnerships with 50+ hotels ranging from heritage properties to luxury palaces.",
   },
   {
     question: "What is your cancellation policy?",
@@ -424,7 +515,7 @@ export const faqs = [
   },
   {
     question: "Is Varanasi safe for solo female travelers?",
-    answer: "Yes, Varanasi is generally safe for solo female travelers, especially with a trusted guide. Kashi Darshan provides female-friendly accommodations, verified guides, and 24/7 support. We recommend our guided packages for solo travelers for maximum safety and peace of mind.",
+    answer: "Yes, Varanasi is generally safe for solo female travelers, especially with a trusted guide. TheKashiYatra provides female-friendly accommodations, verified guides, and 24/7 support. We recommend our guided packages for solo travelers for maximum safety and peace of mind.",
   },
   {
     question: "How do I reach Varanasi?",

@@ -47,7 +47,7 @@ export function ContactSection() {
               {
                 icon: Mail,
                 title: "Email Us",
-                lines: ["info@kashidarshan.com", "bookings@kashidarshan.com"],
+                lines: ["info@thekashiyatra.com", "bookings@thekashiyatra.com"],
                 color: "from-blue-500 to-indigo-600",
               },
               {

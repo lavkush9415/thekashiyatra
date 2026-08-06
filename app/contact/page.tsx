@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { ContactSection } from "@/components/home/ContactSection";
 
 export const metadata: Metadata = {
-  title: "Contact Kashi Darshan — Varanasi Travel Experts",
+  title: "Contact TheKashiYatra — Varanasi Travel Experts",
   description:
-    "Get in touch with Kashi Darshan for hotel bookings, boat rides, tour packages, or custom pilgrimage plans. Available 24×7 on WhatsApp and phone.",
+    "Get in touch with TheKashiYatra for hotel bookings, boat rides, tour packages, or custom pilgrimage plans. Available 24×7 on WhatsApp and phone.",
 };
 
 export default function ContactPage() {

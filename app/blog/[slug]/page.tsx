@@ -229,9 +229,9 @@ Our [heritage walk experience](/experiences) covers this entire route with an ex
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = blogPosts[slug];
-  if (!post) return { title: "Blog Post Not Found — Kashi Darshan" };
+  if (!post) return { title: "Blog Post Not Found — TheKashiYatra" };
   return {
-    title: `${post.title} — Kashi Darshan Blog`,
+    title: `${post.title} — TheKashiYatra Blog`,
     description: post.excerpt,
     openGraph: {
       title: post.title,

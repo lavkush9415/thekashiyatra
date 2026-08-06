@@ -30,7 +30,7 @@ const TwitterXIcon = () => (
 );
 
 const quickLinks = [
-  { label: "About Kashi Darshan", href: "/about" },
+  { label: "About TheKashiYatra", href: "/about" },
   { label: "Our Hotels", href: "/hotels" },
   { label: "Boat Bookings", href: "/boats" },
   { label: "Cab Services", href: "/cabs" },
@@ -96,7 +96,7 @@ export function Footer() {
                 <span className="text-white text-2xl">ॐ</span>
               </div>
               <div>
-                <p className="font-serif text-xl font-bold text-amber-400">Kashi Darshan</p>
+                <p className="font-serif text-xl font-bold text-amber-400">TheKashiYatra</p>
                 <p className="text-xs text-amber-600/80">Experience the Soul of Kashi</p>
               </div>
             </Link>
@@ -110,17 +110,17 @@ export function Footer() {
                 </div>
                 +91 98765 43210
               </a>
-              <a href="mailto:info@kashidarshan.com" className="flex items-center gap-3 text-sm hover:text-amber-400 transition-colors">
+              <a href="mailto:info@thekashiyatra.com" className="flex items-center gap-3 text-sm hover:text-amber-400 transition-colors">
                 <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
                   <Mail size={14} className="text-amber-500" />
                 </div>
-                info@kashidarshan.com
+                info@thekashiyatra.com
               </a>
               <div className="flex items-center gap-3 text-sm">
                 <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
                   <MapPin size={14} className="text-amber-500" />
                 </div>
-                Godaulia, Varanasi — 221001
+                 B3/260 Shivala, Varanasi - 221001
               </div>
             </div>
 
@@ -229,7 +229,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-gray-500">
-            © 2024 Kashi Darshan. All rights reserved. Made with{" "}
+            © 2024 TheKashiYatra. All rights reserved. Made with{" "}
             <Heart size={12} className="inline text-red-500" /> in Varanasi.
           </p>
           <div className="flex items-center gap-2 text-xs text-gray-600">

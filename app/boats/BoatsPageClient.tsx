@@ -2,23 +2,11 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { Clock, Users, Check } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { getWhatsAppUrl, boatBookingMessage } from "@/lib/whatsapp";
-
-interface BoatRide {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  duration: string;
-  timing: string;
-  price: number;
-  capacity: string;
-  features: string[];
-  badge?: string;
-}
+import { BoatRide } from "@/lib/data/boats";
 
 export function BoatsPageClient({ boats }: { boats: BoatRide[] }) {
   return (
@@ -101,16 +89,12 @@ export function BoatsPageClient({ boats }: { boats: BoatRide[] }) {
                     <p className="font-bold text-amber-400 text-2xl">{formatPrice(boat.price)}</p>
                     <p className="text-gray-500 text-xs">per person</p>
                   </div>
-                  <a
-                    href={getWhatsAppUrl(
-                      boatBookingMessage({ boatName: boat.title, price: boat.price })
-                    )}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href={`/boats/${boat.slug}`}
                     className="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-600 text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-amber-500/30 hover:scale-105 transition-all"
                   >
-                    Book Ride
-                  </a>
+                    View Details
+                  </Link>
                 </div>
               </div>
             </motion.div>

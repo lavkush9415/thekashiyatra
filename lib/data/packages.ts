@@ -1,9 +1,38 @@
-export const packages = [
+export interface TourPackage {
+  id: number;
+  slug: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  gallery: string[];
+  duration: string;
+  rating: number;
+  reviews: number;
+  price: number;
+  originalPrice: number;
+  category: string;
+  badge: string;
+  services: string[];
+  highlights: string[];
+  description: string;
+  itinerary: { day: string; title: string; description: string }[];
+  included: string[];
+  excluded: string[];
+  hotelInfo: string;
+  transportInfo: string;
+  mealPlan: string;
+  pickupDrop: string;
+  faqs: { question: string; answer: string }[];
+}
+
+export const packages: TourPackage[] = [
   {
     id: 1,
-    title: 'Divine Kashi Darshan',
+    slug: "divine-kashi-darshan",
+    title: 'Divine TheKashiYatra',
     subtitle: 'Complete Varanasi Spiritual Tour',
     image:'/kashivishwanath.png',
+    gallery: ['/kashivishwanath.png', '/ghats.jpg', '/aarti.jpg', '/kashiyatra.jpg', '/gangaaarti.png'],
     duration: '3 Days / 2 Nights',
     rating: 4.9,
     reviews: 124,
@@ -13,12 +42,30 @@ export const packages = [
     badge: 'Best Seller',
     services: ['Hotel Stay', 'Ganga Aarti', 'Boat Ride', 'Temple Tour', 'Cab'],
     highlights: ['Morning Ganga Aarti at Dashashwamedh', 'Kashi Vishwanath Darshan', 'Evening Sunset Boat Ride'],
+    description: 'Experience the complete spiritual essence of Kashi with this comprehensive 3-day tour. Visit the sacred Kashi Vishwanath Temple, witness the mesmerizing Ganga Aarti, enjoy a serene boat ride on the Ganga, and explore the ancient ghats with an expert guide. All accommodation, transport, and temple assistance are included for a hassle-free pilgrimage.',
+    itinerary: [
+      { day: "Day 1", title: "Arrival & Evening Aarti", description: "Arrive in Varanasi, check-in to hotel. Evening visit to Dashashwamedh Ghat for the spectacular Ganga Aarti ceremony." },
+      { day: "Day 2", title: "Temple Tour & Boat Ride", description: "Morning visit to Kashi Vishwanath Temple, Annapurna Temple, and Kal Bhairav. Afternoon boat ride on the Ganga covering all major ghats. Evening at leisure." },
+      { day: "Day 3", title: "Sunrise & Departure", description: "Early morning sunrise boat ride, visit to Sarnath (optional), then departure with divine blessings." },
+    ],
+    included: ['Hotel Stay (2 nights)', 'Daily Breakfast', 'Ganga Aarti Viewing', 'Boat Ride', 'Temple Tour with Guide', 'All Transfers by AC Cab', 'Pickup & Drop'],
+    excluded: ['Lunch & Dinner', 'Personal Expenses', 'Temple Donations', 'Camera Fees'],
+    hotelInfo: '3-star hotel in Varanasi with AC rooms, attached bathrooms, and complimentary breakfast. Located near the main ghats for easy access.',
+    transportInfo: 'Private AC cab for all transfers and sightseeing. Airport/railway station pickup and drop included.',
+    mealPlan: 'Daily breakfast included. Lunch and dinner available at local restaurants or hotel (at own cost).',
+    pickupDrop: 'Complimentary pickup and drop from Varanasi Airport, Varanasi Junction, or Manduadih Railway Station.',
+    faqs: [
+      { question: "Is this a private tour?", answer: "Yes, this is a private tour with your own cab and guide throughout." },
+      { question: "Can I customize the itinerary?", answer: "Absolutely! We can adjust the itinerary based on your preferences and time." },
+    ],
   },
   {
     id: 2,
+    slug: "luxury-banaras-experience",
     title: 'Luxury Banaras Experience',
     subtitle: 'Premium Stay & Private Tours',
     image:'/kashiyatra.jpg',
+    gallery: ['/kashiyatra.jpg', '/h1.jpeg', '/h2.jpeg', '/suits.jpeg', '/cn-boat.jpg'],
     duration: '3 Days / 2 Nights',
     rating: 5.0,
     reviews: 89,
@@ -28,13 +75,31 @@ export const packages = [
     badge: 'Premium',
     services: ['3-Star Hotel', 'Private Boat', 'AC Cab', 'Heritage Walk', 'Photography'],
     highlights: ['Luxury Heritage Hotel', 'Private Ganga Cruise', 'Professional Photography Session'],
+    description: 'Indulge in the ultimate luxury pilgrimage experience in Varanasi. Stay in a premium heritage hotel, enjoy a private Ganga cruise with champagne, explore the old city with a personal historian guide, and capture your journey with a professional photographer. Every detail is curated for an unforgettable royal experience.',
+    itinerary: [
+      { day: "Day 1", title: "Royal Arrival", description: "Arrive and check-in to a luxury heritage hotel. Welcome dinner with traditional Banarasi cuisine." },
+      { day: "Day 2", title: "Private Cruise & Heritage Walk", description: "Morning private Ganga cruise with breakfast on board. Afternoon heritage walk through the old city with a historian. Evening private Ganga Aarti viewing." },
+      { day: "Day 3", title: "Photography & Departure", description: "Professional photography session at the ghats at sunrise. Departure with luxury car transfer." },
+    ],
+    included: ['Luxury Heritage Hotel (2 nights)', 'All Meals', 'Private Ganga Cruise', 'Professional Photographer', 'Heritage Walk with Historian', 'AC Luxury Cab', 'Airport Transfers'],
+    excluded: ['Personal Expenses', 'Spa Treatments', 'Temple Donations'],
+    hotelInfo: 'Premium heritage hotel with royal suites, Ganga-facing rooms, fine dining restaurant, and spa facilities.',
+    transportInfo: 'Luxury AC cab with chauffeur for all transfers and sightseeing.',
+    mealPlan: 'All meals included — breakfast, lunch, and dinner at premium restaurants and the hotel.',
+    pickupDrop: 'Complimentary luxury pickup and drop from Varanasi Airport or Railway Station.',
+    faqs: [
+      { question: "What makes this a luxury experience?", answer: "Premium heritage hotel, private cruise, personal photographer, and historian guide — all curated for a royal experience." },
+      { question: "Is the photographer included?", answer: "Yes, a professional photographer is included for a 2-hour session with edited photos delivered." },
+    ],
   },
   {
     id: 3,
+    slug: "weekend-ghat-retreat",
     title: 'Weekend Ghat Retreat',
     subtitle: 'Quick Escape to Sacred Varanasi',
     image:
       '/bg1.png',
+    gallery: ['/bg1.png', '/ghats.jpg', '/sunrise1.jpg', '/aarti.jpg', '/boats.jpg'],
     duration: '2 Days / 1 Night',
     rating: 4.7,
     reviews: 201,
@@ -44,13 +109,30 @@ export const packages = [
     badge: 'Popular',
     services: ['Boutique Hotel', 'Boat Ride', 'Aarti View', 'Local Guide'],
     highlights: ['Ghats Walking Tour', 'Evening Ganga Aarti', 'Sunrise Boat Ride'],
+    description: 'The perfect weekend escape to the spiritual heart of India. This compact 2-day tour packs in the essential Kashi experiences — a sunrise boat ride, a walking tour of the ancient ghats, and the mesmerizing evening Ganga Aarti. Ideal for busy travelers seeking a quick spiritual recharge.',
+    itinerary: [
+      { day: "Day 1", title: "Arrival & Ghats Walk", description: "Arrive, check-in to boutique hotel. Afternoon walking tour of the ghats. Evening Ganga Aarti at Dashashwamedh Ghat." },
+      { day: "Day 2", title: "Sunrise Boat & Departure", description: "Early morning sunrise boat ride on the Ganga. Breakfast, then departure." },
+    ],
+    included: ['Boutique Hotel (1 night)', 'Breakfast', 'Sunrise Boat Ride', 'Ghats Walking Tour', 'Ganga Aarti Viewing', 'Local Guide'],
+    excluded: ['Lunch & Dinner', 'Personal Expenses', 'Transfers (can be added)'],
+    hotelInfo: 'Boutique hotel near the ghats with clean AC rooms and attached bathrooms.',
+    transportInfo: 'Transfers not included by default. Can be added at extra cost.',
+    mealPlan: 'Breakfast included. Other meals at local restaurants (at own cost).',
+    pickupDrop: 'Optional pickup and drop available at extra cost.',
+    faqs: [
+      { question: "Is this suitable for a weekend trip?", answer: "Yes, this is designed specifically for a quick weekend getaway to Varanasi." },
+      { question: "Can I add a cab for transfers?", answer: "Yes, cab transfers can be added to this package at an additional cost." },
+    ],
   },
   {
     id: 4,
+    slug: "sarnath-kashi-circuit",
     title: 'Sarnath & Kashi Circuit',
     subtitle: 'Buddhism & Hinduism Heritage',
     image:
       '/sarnath.png',
+    gallery: ['/sarnath.png', '/sarnath1.png', '/sarnathh.png', '/kashivishwanath.png', '/ghats.jpg'],
     duration: '4 Days / 3 Nights',
     rating: 4.8,
     reviews: 67,
@@ -60,6 +142,23 @@ export const packages = [
     badge: 'Cultural',
     services: ['Hotel', 'Sarnath Visit', 'Museum Tour', 'Cab', 'Guide'],
     highlights: ['Sarnath Buddhist Stupa', 'Archaeological Museum', 'Ramnagar Fort'],
+    description: 'Explore the twin heritage of Buddhism and Hinduism on this enriching 4-day circuit. Visit the sacred Sarnath where Buddha gave his first sermon, explore the archaeological museum, and experience the spiritual heart of Kashi with its temples and ghats. A perfect blend of history, culture, and spirituality.',
+    itinerary: [
+      { day: "Day 1", title: "Arrival & TheKashiYatra", description: "Arrive in Varanasi, check-in. Evening Ganga Aarti at Dashashwamedh Ghat." },
+      { day: "Day 2", title: "Sarnath Exploration", description: "Full day at Sarnath — Dhamek Stupa, Mulagandha Kuti Vihar, and the Archaeological Museum." },
+      { day: "Day 3", title: "Temples & Ramnagar Fort", description: "Morning temple tour (Kashi Vishwanath, Annapurna, Kal Bhairav). Afternoon visit to Ramnagar Fort." },
+      { day: "Day 4", title: "Sunrise Boat & Departure", description: "Sunrise boat ride on the Ganga, then departure." },
+    ],
+    included: ['Hotel Stay (3 nights)', 'Daily Breakfast', 'Sarnath Tour with Guide', 'Museum Entry', 'Ramnagar Fort Visit', 'Boat Ride', 'AC Cab', 'Pickup & Drop'],
+    excluded: ['Lunch & Dinner', 'Personal Expenses', 'Camera Fees at Museum'],
+    hotelInfo: 'Comfortable 3-star hotel in Varanasi with AC rooms and breakfast included.',
+    transportInfo: 'Private AC cab for all transfers and sightseeing throughout the tour.',
+    mealPlan: 'Daily breakfast included. Lunch and dinner at local restaurants (at own cost).',
+    pickupDrop: 'Complimentary pickup and drop from Varanasi Airport or Railway Station.',
+    faqs: [
+      { question: "Is Sarnath far from Varanasi?", answer: "Sarnath is about 10 km from Varanasi, approximately 30 minutes by car." },
+      { question: "Is the museum entry included?", answer: "Yes, entry to the Sarnath Archaeological Museum is included in the package." },
+    ],
   },
   // {
   //   id: 5,
@@ -79,10 +178,12 @@ export const packages = [
   // },
   {
     id: 6,
+    slug: "family-varanasi-tour",
     title: 'Family Varanasi Tour',
     subtitle: 'Fun & Spiritual Family Bonding',
     image:
       '/family-tour.jpg',
+    gallery: ['/family-tour.jpg', '/ghats.jpg', '/boats.jpg', '/aarti.jpg', '/sunrise1.jpg'],
     duration: '3 Days / 2 Nights',
     rating: 4.6,
     reviews: 176,
@@ -92,13 +193,30 @@ export const packages = [
     badge: 'Family Pick',
     services: ['Family Rooms', 'Boat Ride', 'Kids Activities', 'Cab', 'Guide'],
     highlights: ['Family Boat Ride', 'Kite Flying at Ghats', 'Street Food Walk'],
-
+    description: 'A perfect family pilgrimage that balances spirituality with fun. Enjoy a family boat ride on the Ganga, fly kites at the ghats, explore the old city with a friendly guide, and create lasting memories together. Family-friendly hotels and activities for all ages included.',
+    itinerary: [
+      { day: "Day 1", title: "Arrival & Family Boat Ride", description: "Arrive, check-in to family-friendly hotel. Evening family boat ride on the Ganga." },
+      { day: "Day 2", title: "Temples & Street Food", description: "Morning temple tour. Afternoon street food walk through the old city. Evening Ganga Aarti." },
+      { day: "Day 3", title: "Kite Flying & Departure", description: "Morning kite flying at the ghats. Breakfast, then departure." },
+    ],
+    included: ['Family Rooms (2 nights)', 'Daily Breakfast', 'Family Boat Ride', 'Temple Tour', 'Street Food Walk', 'Kite Flying Activity', 'AC Cab', 'Guide'],
+    excluded: ['Lunch & Dinner', 'Personal Expenses', 'Temple Donations'],
+    hotelInfo: 'Family-friendly hotel with interconnecting rooms and kid-friendly amenities.',
+    transportInfo: 'Private AC cab with comfortable seating for the whole family.',
+    mealPlan: 'Daily breakfast included. Lunch and dinner at family-friendly restaurants (at own cost).',
+    pickupDrop: 'Complimentary pickup and drop from Varanasi Airport or Railway Station.',
+    faqs: [
+      { question: "Is this suitable for young children?", answer: "Yes, the itinerary is designed to be family-friendly with activities for all ages." },
+      { question: "Are interconnecting rooms available?", answer: "Yes, we book family rooms or interconnecting rooms for larger families." },
+    ],
   },
     {
   id: 7,
+  slug: "kashi-yatra",
   title: 'Kashi Yatra',
   subtitle: 'Varanasi + Prayagraj + Ayodhya + Gaya + Bodhgaya',
   image: '/kashiyatrabg.jpg',
+  gallery: ['/kashiyatrabg.jpg', '/kashivishwanath.png', '/ayodhya.jpg', '/triveni.jpg', '/bodhgaya1.jpg'],
   duration: '6 Days / 5 Nights',
   rating: 4.9,
   reviews: 150,
@@ -108,13 +226,34 @@ export const packages = [
   badge: 'Top Rated',
   services: ['Hotel', 'Cab', 'Sightseeing', 'Guide'],
   highlights: ['Varanasi', 'Prayagraj', 'Ayodhya', 'Gaya', 'Bodhgaya'],
+  description: 'The ultimate spiritual yatra covering all five sacred destinations — Varanasi, Prayagraj, Ayodhya, Gaya, and Bodhgaya. This comprehensive 6-day pilgrimage takes you to the holiest sites of Hinduism and Buddhism, with comfortable hotels, private transport, and expert guides throughout.',
+  itinerary: [
+    { day: "Day 1", title: "Varanasi", description: "Arrive in Varanasi, evening Ganga Aarti at Dashashwamedh Ghat." },
+    { day: "Day 2", title: "Varanasi → Prayagraj", description: "Morning Kashi Vishwanath darshan, then drive to Prayagraj. Triveni Sangam boat ride and evening aarti." },
+    { day: "Day 3", title: "Prayagraj → Ayodhya", description: "Drive to Ayodhya, visit Ram Mandir and Hanuman Garhi." },
+    { day: "Day 4", title: "Ayodhya → Gaya", description: "Drive to Gaya, visit Vishnupad Temple." },
+    { day: "Day 5", title: "Gaya → Bodhgaya", description: "Visit Bodhgaya — Mahabodhi Temple, Bodhi Tree, and meditation." },
+    { day: "Day 6", title: "Return to Varanasi", description: "Drive back to Varanasi for departure." },
+  ],
+  included: ['Hotel Stay (5 nights)', 'Daily Breakfast', 'All Transfers by AC Cab', 'Boat Ride at Triveni Sangam', 'Temple Assistance', 'Expert Guide'],
+  excluded: ['Lunch & Dinner', 'Personal Expenses', 'Temple Donations', 'Puja Materials'],
+  hotelInfo: 'Comfortable 3-star hotels in each city with AC rooms and breakfast included.',
+  transportInfo: 'Private AC cab for the entire journey with experienced driver.',
+  mealPlan: 'Daily breakfast included. Lunch and dinner at local restaurants (at own cost).',
+  pickupDrop: 'Pickup from Varanasi and drop back to Varanasi Airport or Railway Station.',
+  faqs: [
+    { question: "How long is the total journey?", answer: "The complete circuit covers approximately 1,200 km over 6 days." },
+    { question: "Are all temple entries included?", answer: "Temple assistance is provided, but donations and special puja costs are extra." },
+  ],
 },
 
 {
   id: 8,
+  slug: "varanasi-prayagraj-ayodhya",
   title: 'Varanasi + Prayagraj + Ayodhya',
   subtitle: 'Spiritual Circuit',
   image: '/ayodhya.jpg',
+  gallery: ['/ayodhya.jpg', '/kashivishwanath.png', '/triveni.jpg', '/ghats.jpg', '/aarti.jpg'],
   duration: '4 Days / 3 Nights',
   rating: 4.8,
   reviews: 110,
@@ -124,13 +263,32 @@ export const packages = [
   badge: 'Spiritual Combo',
   services: ['Hotel', 'Cab', 'Breakfast'],
   highlights: ['Varanasi', 'Prayagraj', 'Ayodhya'],
+  description: 'Visit the three most sacred cities of North India on this spiritual circuit. Experience the divine energy of Kashi, take a holy dip at the Triveni Sangam in Prayagraj, and seek blessings at the Ram Mandir in Ayodhya. A well-paced itinerary with comfortable stays and private transport.',
+  itinerary: [
+    { day: "Day 1", title: "Varanasi", description: "Arrive in Varanasi, evening Ganga Aarti." },
+    { day: "Day 2", title: "Varanasi → Prayagraj", description: "Morning Kashi Vishwanath darshan, drive to Prayagraj, Triveni Sangam visit." },
+    { day: "Day 3", title: "Prayagraj → Ayodhya", description: "Drive to Ayodhya, visit Ram Mandir and Hanuman Garhi." },
+    { day: "Day 4", title: "Return to Varanasi", description: "Drive back to Varanasi for departure." },
+  ],
+  included: ['Hotel Stay (3 nights)', 'Daily Breakfast', 'All Transfers by AC Cab', 'Boat Ride at Triveni Sangam', 'Temple Assistance'],
+  excluded: ['Lunch & Dinner', 'Personal Expenses', 'Temple Donations'],
+  hotelInfo: 'Comfortable 3-star hotels in each city with AC rooms and breakfast.',
+  transportInfo: 'Private AC cab for the entire journey.',
+  mealPlan: 'Daily breakfast included. Other meals at local restaurants (at own cost).',
+  pickupDrop: 'Pickup and drop from Varanasi Airport or Railway Station.',
+  faqs: [
+    { question: "What is the total distance?", answer: "The circuit covers approximately 600 km over 4 days." },
+    { question: "Can we extend the tour?", answer: "Yes, we can customize the itinerary to add more destinations." },
+  ],
 },
 
 {
   id: 9,
+  slug: "varanasi-prayagraj",
   title: 'Varanasi and Prayagraj',
   subtitle: 'Holy Cities Tour',
   image: '/triveni.jpg',
+  gallery: ['/triveni.jpg', '/kashivishwanath.png', '/ghats.jpg', '/aarti.jpg', '/boats.jpg'],
   duration: '4 Days / 3 Nights',
   rating: 4.7,
   reviews: 95,
@@ -140,13 +298,32 @@ export const packages = [
   badge: 'Premium',
   services: ['Hotel', 'Cab', 'Sightseeing'],
   highlights: ['Triveni Sangam'],
+  description: 'Explore the two holiest cities of North India — Varanasi and Prayagraj. Witness the Ganga Aarti in Kashi, take a sacred boat ride at the Triveni Sangam where three rivers meet, and immerse yourself in the spiritual heritage of these ancient cities.',
+  itinerary: [
+    { day: "Day 1", title: "Varanasi", description: "Arrive in Varanasi, evening Ganga Aarti at Dashashwamedh Ghat." },
+    { day: "Day 2", title: "Varanasi Sightseeing", description: "Kashi Vishwanath Temple, Annapurna Temple, and boat ride on the Ganga." },
+    { day: "Day 3", title: "Prayagraj", description: "Drive to Prayagraj, Triveni Sangam boat ride and evening aarti." },
+    { day: "Day 4", title: "Return", description: "Drive back to Varanasi for departure." },
+  ],
+  included: ['Hotel Stay (3 nights)', 'Daily Breakfast', 'All Transfers by AC Cab', 'Boat Rides', 'Temple Assistance'],
+  excluded: ['Lunch & Dinner', 'Personal Expenses', 'Temple Donations'],
+  hotelInfo: 'Comfortable hotels in Varanasi and Prayagraj with AC rooms.',
+  transportInfo: 'Private AC cab for all transfers and sightseeing.',
+  mealPlan: 'Daily breakfast included. Other meals at local restaurants (at own cost).',
+  pickupDrop: 'Pickup and drop from Varanasi Airport or Railway Station.',
+  faqs: [
+    { question: "Is the Triveni Sangam boat ride included?", answer: "Yes, the boat ride at the Triveni Sangam is included in the package." },
+    { question: "What is the best time for this tour?", answer: "October to March is ideal for comfortable weather and clear skies." },
+  ],
 },
 
 {
   id: 10,
+  slug: "varanasi-ayodhya",
   title: 'Varanasi + Ayodhya',
   subtitle: 'Ram Mandir Darshan Tour',
   image: '/ramlala1.png',
+  gallery: ['/ramlala1.png', '/ayodhya.jpg', '/kashivishwanath.png', '/ghats.jpg', '/aarti.jpg'],
   duration: '4 Days / 3 Nights',
   rating: 4.8,
   reviews: 120,
@@ -156,13 +333,32 @@ export const packages = [
   badge: 'Top Rated',
   services: ['Hotel', 'Cab', 'Sightseeing'],
   highlights: ['Ram Mandir'],
+  description: 'A sacred journey to the birthplace of Lord Rama. Visit the magnificent Ram Mandir in Ayodhya, experience the spiritual energy of Kashi, and enjoy a serene boat ride on the Ganga. This tour combines the two most revered destinations for Hindu pilgrims.',
+  itinerary: [
+    { day: "Day 1", title: "Varanasi", description: "Arrive in Varanasi, evening Ganga Aarti." },
+    { day: "Day 2", title: "Varanasi → Ayodhya", description: "Morning Kashi Vishwanath darshan, drive to Ayodhya." },
+    { day: "Day 3", title: "Ayodhya Darshan", description: "Ram Mandir, Hanuman Garhi, and Saryu Ghat aarti." },
+    { day: "Day 4", title: "Return", description: "Drive back to Varanasi for departure." },
+  ],
+  included: ['Hotel Stay (3 nights)', 'Daily Breakfast', 'All Transfers by AC Cab', 'Temple Assistance', 'Saryu Aarti Viewing'],
+  excluded: ['Lunch & Dinner', 'Personal Expenses', 'Temple Donations'],
+  hotelInfo: 'Comfortable hotels in Varanasi and Ayodhya with AC rooms.',
+  transportInfo: 'Private AC cab for the entire journey.',
+  mealPlan: 'Daily breakfast included. Other meals at local restaurants (at own cost).',
+  pickupDrop: 'Pickup and drop from Varanasi Airport or Railway Station.',
+  faqs: [
+    { question: "How far is Ayodhya from Varanasi?", answer: "Ayodhya is approximately 200 km from Varanasi, about 4 hours by car." },
+    { question: "Is Ram Mandir darshan guaranteed?", answer: "We provide temple assistance to help with darshan, though queue times may vary." },
+  ],
 },
 
 {
   id: 11,
+  slug: "varanasi-bodhgaya",
   title: 'Varanasi + Bodhgaya',
   subtitle: 'Spiritual Combo',
   image: '/bodhgaya1.jpg',
+  gallery: ['/bodhgaya1.jpg', '/bodhgaya12.png', '/kashivishwanath.png', '/ghats.jpg', '/aarti.jpg'],
   duration: '4 Days / 3 Nights',
   rating: 4.8,
   reviews: 88,
@@ -172,13 +368,32 @@ export const packages = [
   badge: 'Spiritual Combo',
   services: ['Hotel', 'Cab', 'Breakfast'],
   highlights: ['Bodhgaya'],
+  description: 'Combine the spiritual energy of Kashi with the enlightenment of Bodhgaya, where Buddha attained enlightenment under the Bodhi Tree. Visit the Mahabodhi Temple, meditate in the sacred grounds, and experience the best of both Hindu and Buddhist heritage.',
+  itinerary: [
+    { day: "Day 1", title: "Varanasi", description: "Arrive in Varanasi, evening Ganga Aarti." },
+    { day: "Day 2", title: "Varanasi → Bodhgaya", description: "Morning Kashi Vishwanath darshan, drive to Bodhgaya." },
+    { day: "Day 3", title: "Bodhgaya Darshan", description: "Mahabodhi Temple, Bodhi Tree, Great Buddha Statue, and meditation." },
+    { day: "Day 4", title: "Return", description: "Drive back to Varanasi for departure." },
+  ],
+  included: ['Hotel Stay (3 nights)', 'Daily Breakfast', 'All Transfers by AC Cab', 'Temple Assistance', 'Guide'],
+  excluded: ['Lunch & Dinner', 'Personal Expenses', 'Temple Donations'],
+  hotelInfo: 'Comfortable hotels in Varanasi and Bodhgaya with AC rooms.',
+  transportInfo: 'Private AC cab for the entire journey.',
+  mealPlan: 'Daily breakfast included. Other meals at local restaurants (at own cost).',
+  pickupDrop: 'Pickup and drop from Varanasi Airport or Railway Station.',
+  faqs: [
+    { question: "How far is Bodhgaya from Varanasi?", answer: "Bodhgaya is approximately 250 km from Varanasi, about 5 hours by car." },
+    { question: "Is meditation included?", answer: "Yes, we arrange time for meditation at the Mahabodhi Temple grounds." },
+  ],
 },
 
 {
   id: 12,
+  slug: "varanasi-complete-kashi",
   title: 'Varanasi',
   subtitle: 'Complete Kashi Experience',
   image: '/gangaaarti.png',
+  gallery: ['/gangaaarti.png', '/kashivishwanath.png', '/ghats.jpg', '/aarti.jpg', '/sunrise1.jpg'],
   duration: '3 Days / 2 Nights',
   rating: 4.9,
   reviews: 200,
@@ -188,5 +403,21 @@ export const packages = [
   badge: 'Popular',
   services: ['Hotel', 'Boat Ride', 'Local Tour'],
   highlights: ['Varanasi'],
+  description: 'The complete Kashi experience in 3 days. Visit the sacred Kashi Vishwanath Temple, enjoy a sunrise boat ride on the Ganga, witness the spectacular Ganga Aarti, and explore the ancient ghats and temples with a knowledgeable local guide. Perfect for first-time visitors.',
+  itinerary: [
+    { day: "Day 1", title: "Arrival & Aarti", description: "Arrive, check-in. Evening Ganga Aarti at Dashashwamedh Ghat." },
+    { day: "Day 2", title: "Temples & Boat Ride", description: "Morning Kashi Vishwanath darshan. Afternoon boat ride on the Ganga covering all major ghats." },
+    { day: "Day 3", title: "Sunrise & Departure", description: "Sunrise boat ride, breakfast, then departure." },
+  ],
+  included: ['Hotel Stay (2 nights)', 'Daily Breakfast', 'Sunrise Boat Ride', 'Ganga Aarti Viewing', 'Temple Tour with Guide', 'Local Transfers'],
+  excluded: ['Lunch & Dinner', 'Personal Expenses', 'Temple Donations'],
+  hotelInfo: 'Comfortable hotel near the ghats with AC rooms and breakfast.',
+  transportInfo: 'Local transfers by AC cab for sightseeing.',
+  mealPlan: 'Daily breakfast included. Other meals at local restaurants (at own cost).',
+  pickupDrop: 'Complimentary pickup and drop from Varanasi Airport or Railway Station.',
+  faqs: [
+    { question: "Is this good for first-time visitors?", answer: "Yes, this is the perfect introduction to Varanasi covering all the essentials." },
+    { question: "Can I add Sarnath to this tour?", answer: "Yes, Sarnath can be added as an optional half-day excursion." },
+  ],
   },
 ]

@@ -7,7 +7,6 @@ import { Star, Clock, Users, ChevronRight, Check } from "lucide-react";
 import { packages } from "@/lib/data/packages";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { formatPrice } from "@/lib/utils";
-import { getWhatsAppUrl, packageBookingMessage } from "@/lib/whatsapp";
 
 export function TourPackages() {
   return (
@@ -118,14 +117,12 @@ export function TourPackages() {
                       </p>
                     </div>
                     <div className="flex gap-2">
-                      <a
-                        href={getWhatsAppUrl(packageBookingMessage({ packageName: pkg.title, price: pkg.price }))}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Link
+                        href={`/packages/${pkg.slug}`}
                         className="px-4 py-2 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200"
                       >
-                        Book
-                      </a>
+                        View Details
+                      </Link>
                     </div>
                   </div>
                 </div>

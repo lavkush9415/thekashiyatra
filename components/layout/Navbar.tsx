@@ -20,12 +20,12 @@ const navLinks = [
     label: "Packages",
     href: "/packages",
     children: [
-      { label: "1 Day Darshan", href: "/packages/1-day-kashi-darshan" },
-      { label: "Spiritual Tour", href: "/packages/2-days-spiritual-tour" },
-      { label: "Heritage Tour", href: "/packages/3-days-heritage-tour" },
-      { label: "Kashi + Prayagraj", href: "/packages/kashi-prayagraj" },
-      { label: "Kashi + Ayodhya", href: "/packages/kashi-ayodhya" },
-      { label: "Luxury Kashi", href: "/packages/luxury-kashi" },
+      // { label: "1 Day Darshan", href: "/packages/1-day-kashi-darshan" },
+      // { label: "Spiritual Tour", href: "/packages/2-days-spiritual-tour" },
+      // { label: "Heritage Tour", href: "/packages/3-days-heritage-tour" },
+      // { label: "Kashi + Prayagraj", href: "/packages/kashi-prayagraj" },
+      // { label: "Kashi + Ayodhya", href: "/packages/kashi-ayodhya" },
+      // { label: "Luxury Kashi", href: "/packages/luxury-kashi" },
     ],
   },
   {
@@ -90,7 +90,7 @@ export function Navbar() {
                       : "text-white drop-shadow-lg"
                   )}
                 >
-                  Kashi Darshan
+                  TheKashiYatra
                 </span>
                 <p
                   className={cn(
@@ -266,7 +266,7 @@ export function Navbar() {
                     <span className="text-white text-lg font-bold">ॐ</span>
                   </div>
                   <div>
-                    <p className="font-serif text-lg font-bold text-[#8B4513] dark:text-amber-400">Kashi Darshan</p>
+                    <p className="font-serif text-lg font-bold text-[#8B4513] dark:text-amber-400">TheKashiYatra</p>
                     <p className="text-xs text-amber-600">Experience the Soul of Kashi</p>
                   </div>
                 </div>
@@ -338,8 +338,8 @@ export function Navbar() {
                   <a href="tel:+919876543210" className="flex items-center gap-2 text-[#8B4513] dark:text-amber-400 font-medium">
                     <Phone size={15} /> +91 98765 43210
                   </a>
-                  <a href="mailto:info@kashidarshan.com" className="flex items-center gap-2 text-amber-600 text-sm mt-1">
-                    <MapPin size={13} /> info@kashidarshan.com
+                  <a href="mailto:info@thekashiyatra.com" className="flex items-center gap-2 text-amber-600 text-sm mt-1">
+                    <MapPin size={13} /> info@thekashiyatra.com
                   </a>
                 </div>
               </div>

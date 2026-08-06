@@ -35,7 +35,7 @@ export function generateStars(rating: number): string {
   return "★".repeat(Math.floor(rating)) + "☆".repeat(5 - Math.floor(rating));
 }
 
-export const SITE_NAME = "Kashi Darshan";
-export const SITE_URL = "https://kashidarshan.com";
+export const SITE_NAME = "TheKashiYatra";
+export const SITE_URL = "https://thekashiyatra.com";
 export const SITE_DESCRIPTION =
   "Experience the Soul of Kashi — Premium travel and pilgrimage booking for Varanasi. Hotels, Boat Rides, Temple Tours, Packages & more.";

@@ -4,8 +4,8 @@ import { CheckCircle } from "lucide-react";
 import { getWhatsAppUrl, genericInquiryMessage } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
-  title: "Booking Confirmed — Kashi Darshan",
-  description: "Your booking with Kashi Darshan has been confirmed. We'll send you the details shortly.",
+  title: "Booking Confirmed — TheKashiYatra",
+  description: "Your booking with TheKashiYatra has been confirmed. We'll send you the details shortly.",
   robots: { index: false, follow: false },
 };
 
@@ -39,7 +39,7 @@ export default function BookingSuccessPage() {
               { label: "Booking ID", value: "#KD2024-8812" },
               { label: "Status", value: "✅ Confirmed" },
               { label: "Support", value: "+91 98765 43210" },
-              { label: "Email", value: "info@kashidarshan.com" },
+              { label: "Email", value: "info@thekashiyatra.com" },
             ].map((item) => (
               <div key={item.label} className="flex justify-between items-center text-sm py-2 border-b border-gray-50 dark:border-gray-700/50 last:border-0">
                 <span className="text-gray-500 dark:text-gray-400">{item.label}</span>

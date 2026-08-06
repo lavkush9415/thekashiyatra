@@ -64,7 +64,7 @@ export function Testimonials() {
             badge="What Pilgrims Say"
             title="Voices of"
             highlightedWord=" Divine Journeys"
-            subtitle="Thousands of pilgrims have trusted Kashi Darshan for their sacred travels."
+            subtitle="Thousands of pilgrims have trusted TheKashiYatra for their sacred travels."
             light={true}
           />
         </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Kashi Darshan",
+  title: "Privacy Policy — TheKashiYatra",
 };
 
 export default function PrivacyPolicyPage() {
@@ -38,11 +38,11 @@ export default function PrivacyPolicyPage() {
             },
             {
               title: "6. Your Rights",
-              content: "You have the right to access, correct, or delete your personal information. Contact us at privacy@kashidarshan.com to exercise these rights."
+              content: "You have the right to access, correct, or delete your personal information. Contact us at privacy@thekashiyatra.com to exercise these rights."
             },
             {
               title: "7. Contact Us",
-              content: "If you have questions about this Privacy Policy, please contact us at privacy@kashidarshan.com or write to us at Godaulia, Varanasi — 221001."
+              content: "If you have questions about this Privacy Policy, please contact us at privacy@thekashiyatra.com or write to us at Godaulia, Varanasi — 221001."
             },
           ].map((section) => (
             <div key={section.title} className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">

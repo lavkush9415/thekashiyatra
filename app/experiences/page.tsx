@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { experiences } from "@/lib/data/experiences";
 import { formatPrice } from "@/lib/utils";
 import { Star, Clock } from "lucide-react";
-import { getWhatsAppUrl, experienceBookingMessage, aartiBookingMessage, isGangaAarti } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Spiritual Experiences in Varanasi — Ganga Aarti, Puja, Yoga & More",
@@ -35,7 +35,8 @@ export default function ExperiencesPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {experiences.map((exp) => (
-            <div
+            <Link
+              href={exp.slug === "ganga-aarti-ceremony" ? "/ganga-aarti" : `/experiences/${exp.slug}`}
               key={exp.id}
               className="group bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-card hover:shadow-luxury transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:-translate-y-2"
             >
@@ -73,21 +74,12 @@ export default function ExperiencesPage() {
                   <p className={`font-bold text-lg ${exp.color}`}>
                     {exp.price === 0 ? "Free" : formatPrice(exp.price)}
                   </p>
-                  <a
-                    href={getWhatsAppUrl(
-                      isGangaAarti(exp.name)
-                        ? aartiBookingMessage({ packageName: exp.name, price: exp.price })
-                        : experienceBookingMessage({ experienceName: exp.name, price: exp.price })
-                    )}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all"
-                  >
-                    Book
-                  </a>
+                  <span className="px-4 py-2 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all">
+                    View Details
+                  </span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

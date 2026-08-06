@@ -1,7 +1,11 @@
 import { MetadataRoute } from "next";
+import { hotels } from "@/lib/data/hotels";
+import { boatRides } from "@/lib/data/boats";
+import { packages } from "@/lib/data/packages";
+import { experiences, cabServices } from "@/lib/data/experiences";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://kashidarshan.com";
+  const baseUrl = "https://thekashiyatra.com";
 
   const staticPages = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 1 },
@@ -11,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/packages`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.9 },
     { url: `${baseUrl}/cabs`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.7 },
     { url: `${baseUrl}/experiences`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
+    { url: `${baseUrl}/ganga-aarti`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.9 },
     { url: `${baseUrl}/gallery`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
     { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.7 },
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.7 },
@@ -20,18 +25,40 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Hotel pages
-  const hotelIds = ["taj-nadesar-palace", "brijrama-palace", "radisson-varanasi", "golden-tulip", "hotel-ganges-view", "surya-varanasi"];
-  const hotelPages = hotelIds.map((id) => ({
-    url: `${baseUrl}/hotels/${id}`,
+  const hotelPages = hotels.map((h) => ({
+    url: `${baseUrl}/hotels/${h.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  // Boat pages
+  const boatPages = boatRides.map((b) => ({
+    url: `${baseUrl}/boats/${b.slug}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
   // Package pages
-  const packageIds = ["1-day-kashi-darshan", "2-days-spiritual-tour", "3-days-heritage-tour", "kashi-prayagraj", "kashi-ayodhya", "luxury-kashi"];
-  const packagePages = packageIds.map((id) => ({
-    url: `${baseUrl}/packages/${id}`,
+  const packagePages = packages.map((p) => ({
+    url: `${baseUrl}/packages/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  // Cab pages
+  const cabPages = cabServices.map((c) => ({
+    url: `${baseUrl}/cabs/${c.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  // Experience pages
+  const experiencePages = experiences.map((e) => ({
+    url: e.slug === "ganga-aarti-ceremony" ? `${baseUrl}/ganga-aarti` : `${baseUrl}/experiences/${e.slug}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.8,
@@ -46,5 +73,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...hotelPages, ...packagePages, ...blogPages];
+  return [...staticPages, ...hotelPages, ...boatPages, ...packagePages, ...cabPages, ...experiencePages, ...blogPages];
 }

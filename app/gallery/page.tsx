@@ -4,7 +4,7 @@ import Link from "next/link";
 import { galleryImages } from "@/lib/data/experiences";
 
 export const metadata: Metadata = {
-  title: "Photo Gallery — Kashi Darshan Varanasi",
+  title: "Photo Gallery — TheKashiYatra Varanasi",
   description:
     "Explore the beauty of Varanasi through our photo gallery. Ghats, Ganga Aarti, temples, boat rides, and spiritual moments captured in stunning photography.",
 };

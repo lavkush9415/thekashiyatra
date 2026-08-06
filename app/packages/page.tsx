@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { packages } from "@/lib/data/packages";
 import { formatPrice } from "@/lib/utils";
 import { Star, Clock, Check } from "lucide-react";
-import { getWhatsAppUrl, packageBookingMessage } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Varanasi Tour Packages — 1 Day to 5 Day Spiritual Tours",
   description:
-    "Choose from our curated Varanasi tour packages. 1 Day Kashi Darshan, Heritage tours, Kashi-Prayagraj combo, Kashi-Ayodhya pilgrimages. Best prices.",
+    "Choose from our curated Varanasi tour packages. 1 Day TheKashiYatra, Heritage tours, Kashi-Prayagraj combo, Kashi-Ayodhya pilgrimages. Best prices.",
 };
 
 export default function PackagesPage() {
@@ -38,7 +38,8 @@ export default function PackagesPage() {
           {packages.map((pkg, index) => {
             const discount = Math.round(((pkg.originalPrice - pkg.price) / pkg.originalPrice) * 100);
             return (
-              <div
+              <Link
+                href={`/packages/${pkg.slug}`}
                 key={pkg.id}
                 className="group bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-card hover:shadow-luxury transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col"
               >
@@ -84,17 +85,12 @@ export default function PackagesPage() {
                       <p className="text-xs text-gray-400 line-through">{formatPrice(pkg.originalPrice)}</p>
                       <p className="font-bold text-[#8B4513] dark:text-amber-400 text-xl">{formatPrice(pkg.price)}<span className="text-xs font-normal text-gray-400">/person</span></p>
                     </div>
-                    <a
-                      href={getWhatsAppUrl(packageBookingMessage({ packageName: pkg.title, price: pkg.price }))}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 py-2 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all"
-                    >
-                      Book
-                    </a>
+                    <span className="px-4 py-2 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all">
+                      View Details
+                    </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

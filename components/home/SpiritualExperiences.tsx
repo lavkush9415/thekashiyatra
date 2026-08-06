@@ -7,7 +7,6 @@ import { Star, Clock, ChevronRight } from "lucide-react";
 import { experiences } from "@/lib/data/experiences";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { formatPrice } from "@/lib/utils";
-import { getWhatsAppUrl, experienceBookingMessage, aartiBookingMessage, isGangaAarti } from "@/lib/whatsapp";
 
 export function SpiritualExperiences() {
   return (
@@ -74,18 +73,12 @@ export function SpiritualExperiences() {
                   {experiences[0].price === 0 ? "Free" : formatPrice(experiences[0].price)}
                 </span>
               </div>
-              <a
-                href={getWhatsAppUrl(
-                  isGangaAarti(experiences[0].name)
-                    ? aartiBookingMessage({ packageName: experiences[0].name, price: experiences[0].price })
-                    : experienceBookingMessage({ experienceName: experiences[0].name, price: experiences[0].price })
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={experiences[0].slug === "ganga-aarti-ceremony" ? "/ganga-aarti" : `/experiences/${experiences[0].slug}`}
                 className="mt-4 w-full py-3 bg-gradient-to-r from-amber-500 to-orange-600 text-white rounded-xl text-sm font-semibold text-center hover:shadow-xl hover:shadow-amber-500/30 transition-all"
               >
-                Book This Experience
-              </a>
+                View Details
+              </Link>
             </div>
           </motion.div>
 
@@ -139,18 +132,12 @@ export function SpiritualExperiences() {
                       <span className="text-gray-400 text-xs">({exp.reviews.toLocaleString()})</span>
                     </div>
                   </div>
-                  <a
-                    href={getWhatsAppUrl(
-                      isGangaAarti(exp.name)
-                        ? aartiBookingMessage({ packageName: exp.name, price: exp.price })
-                        : experienceBookingMessage({ experienceName: exp.name, price: exp.price })
-                    )}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href={exp.slug === "ganga-aarti-ceremony" ? "/ganga-aarti" : `/experiences/${exp.slug}`}
                     className="w-full py-3 bg-gradient-to-r from-amber-500 to-orange-600 text-white rounded-xl text-sm font-semibold text-center block hover:shadow-xl hover:shadow-amber-500/30 transition-all"
                   >
-                    Book This Experience
-                  </a>
+                    View Details
+                  </Link>
                 </div>
               </motion.div>
             ))}

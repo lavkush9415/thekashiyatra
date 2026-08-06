@@ -25,10 +25,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kashidarshan.com"),
+  metadataBase: new URL("https://thekashiyatra.com"),
   title: {
-    default: "Kashi Darshan — Experience the Soul of Kashi | Varanasi Travel & Pilgrimage",
-    template: "%s | Kashi Darshan",
+    default: "TheKashiYatra — Experience the Soul of Kashi | Varanasi Travel & Pilgrimage",
+    template: "%s | TheKashiYatra",
   },
   description:
     "Book premium hotels, sacred boat rides, temple tours, and spiritual experiences in Varanasi (Kashi). Your trusted pilgrimage partner for Ganga Aarti, Kashi Vishwanath darshan, and customized tour packages.",
@@ -44,14 +44,14 @@ export const metadata: Metadata = {
     "Sarnath tour",
     "sunrise boat ride Varanasi",
   ],
-  authors: [{ name: "Kashi Darshan", url: "https://kashidarshan.com" }],
-  creator: "Kashi Darshan",
+  authors: [{ name: "TheKashiYatra", url: "https://thekashiyatra.com" }],
+  creator: "TheKashiYatra",
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://kashidarshan.com",
-    siteName: "Kashi Darshan",
-    title: "Kashi Darshan — Experience the Soul of Kashi",
+    url: "https://thekashiyatra.com",
+    siteName: "TheKashiYatra",
+    title: "TheKashiYatra — Experience the Soul of Kashi",
     description:
       "Premium travel and pilgrimage booking for Varanasi. Hotels, Boat Rides, Temple Tours, Packages & more.",
     images: [
@@ -59,16 +59,16 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Kashi Darshan — Experience the Soul of Kashi",
+        alt: "TheKashiYatra — Experience the Soul of Kashi",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kashi Darshan — Experience the Soul of Kashi",
+    title: "TheKashiYatra — Experience the Soul of Kashi",
     description: "Premium Varanasi travel & pilgrimage booking. Hotels, Boats, Tours & Experiences.",
     images: ["/og-image.jpg"],
-    creator: "@kashidarshan",
+    creator: "@thekashiyatra",
   },
   robots: {
     index: true,
@@ -93,11 +93,11 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
-  name: "Kashi Darshan",
+  name: "TheKashiYatra",
   description: "Premium travel and pilgrimage booking service for Varanasi, India.",
-  url: "https://kashidarshan.com",
+  url: "https://thekashiyatra.com",
   telephone: "+91-98765-43210",
-  email: "info@kashidarshan.com",
+  email: "info@thekashiyatra.com",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Near Kashi Vishwanath Temple, Godaulia",
@@ -118,9 +118,9 @@ const jsonLd = {
     closes: "22:00",
   },
   sameAs: [
-    "https://facebook.com/kashidarshan",
-    "https://instagram.com/kashidarshan",
-    "https://twitter.com/kashidarshan",
+    "https://facebook.com/thekashiyatra",
+    "https://instagram.com/thekashiyatra",
+    "https://twitter.com/thekashiyatra",
   ],
 };
 

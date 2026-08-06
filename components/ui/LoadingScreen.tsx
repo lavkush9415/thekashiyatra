@@ -67,7 +67,7 @@ export function LoadingScreen() {
             className="text-center"
           >
             <h1 className="font-serif text-4xl font-bold text-amber-400 mb-2">
-              Kashi Darshan
+              TheKashiYatra
             </h1>
             <p className="text-amber-600/70 text-sm tracking-widest uppercase">
               Experience the Soul of Kashi

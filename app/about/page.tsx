@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "About Kashi Darshan — Our Story & Mission",
+  title: "About TheKashiYatra — Our Story & Mission",
   description:
-    "Learn about Kashi Darshan — founded in 2016 to provide authentic, premium pilgrimage experiences in Varanasi. Our mission, team, and values.",
+    "Learn about TheKashiYatra — founded in 2016 to provide authentic, premium pilgrimage experiences in Varanasi. Our mission, team, and values.",
 };
 
 export default function AboutPage() {
@@ -13,7 +13,7 @@ export default function AboutPage() {
       {/* Hero */}
       <div className="relative h-96 overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1920&q=80"
+          src="/kashiyatrabg.jpg"
           alt="Kashi Vishwanath Temple"
           fill
           className="object-cover brightness-50"
@@ -26,7 +26,7 @@ export default function AboutPage() {
               Our Story
             </span>
             <h1 className="font-serif text-5xl sm:text-6xl font-bold text-white mb-4">
-              About Kashi Darshan
+              About TheKashiYatra
             </h1>
             <p className="text-white/80 text-xl max-w-2xl">
               Born from devotion, built on trust.
@@ -44,7 +44,7 @@ export default function AboutPage() {
               Making Sacred Kashi <span className="gradient-text">Accessible to All</span>
             </h2>
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-              Founded in 2016 by a team of devoted Varanasi locals and travel professionals, Kashi Darshan was born from a simple belief: every pilgrim deserves a seamless, safe, and spiritually fulfilling journey to the ancient city of Kashi.
+              Founded in 2016 by a team of devoted Varanasi locals and travel professionals, TheKashiYatra was born from a simple belief: every pilgrim deserves a seamless, safe, and spiritually fulfilling journey to the ancient city of Kashi.
             </p>
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
               Over 8 years, we have helped over 50,000 pilgrims from across India and the world experience the divine energy of Varanasi — from the first rays of the sun on the Ganga to the golden flames of the Ganga Aarti.
@@ -55,7 +55,7 @@ export default function AboutPage() {
           </div>
           <div className="relative h-80 rounded-3xl overflow-hidden shadow-luxury">
             <Image
-              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+              src="/kashivishwanath.png"
               alt="Sunrise over Ganga"
               fill
               className="object-cover"
@@ -99,16 +99,22 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {[
-            { name: "Pandit Raghav Mishra", role: "Founder & Spiritual Guide", img: "https://i.pravatar.cc/200?img=70" },
-            { name: "Priya Shukla", role: "Head of Operations", img: "https://i.pravatar.cc/200?img=47" },
-            { name: "Arjun Tiwari", role: "Travel Experience Lead", img: "https://i.pravatar.cc/200?img=65" },
-            { name: "Sunita Devi", role: "Guest Relations Manager", img: "https://i.pravatar.cc/200?img=49" },
+            { name: "Bhai Lal Yadav", role: "Founder & Spiritual Guide", src: "/founder.jpeg" },
+            { name: "Pratima Yadav", role: "Head of Operations", src: "/pratima1.jpeg" },
+            // { name: "Arjun Tiwari", role: "Travel Experience Lead", img: "https://i.pravatar.cc/200?img=65" },
+            { name: "Chanchal Yadav", role: "Guest Relations Manager", src: "/chanchal.jpeg" },
           ].map((member) => (
             <div key={member.name} className="text-center group">
               <div className="relative w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden ring-4 ring-amber-100 dark:ring-amber-500/20 group-hover:ring-amber-300 dark:group-hover:ring-amber-500 transition-all">
-                <Image src={member.img} alt={member.name} fill className="object-cover" />
+                <Image
+  src={member.src}
+  alt={member.name}
+  fill
+  sizes="96px"
+  className="object-cover"
+/>
               </div>
               <h4 className="font-semibold text-gray-900 dark:text-white">{member.name}</h4>
               <p className="text-amber-600 dark:text-amber-400 text-sm">{member.role}</p>

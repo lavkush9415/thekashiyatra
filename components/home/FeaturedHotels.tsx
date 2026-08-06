@@ -10,7 +10,6 @@ import { hotels } from "@/lib/data/hotels";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { formatPrice } from "@/lib/utils";
 import { useToast } from "@/components/providers/ToastProvider";
-import { getWhatsAppUrl, hotelBookingMessage } from "@/lib/whatsapp";
 
 const amenityIcons: Record<string, React.ReactNode> = {
   "WiFi": <Wifi size={12} />,
@@ -65,6 +64,7 @@ export function FeaturedHotels() {
               transition={{ delay: index * 0.1 }}
               className="group bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-card hover:shadow-luxury transition-all duration-300 border border-gray-100 dark:border-gray-700 flex flex-col h-full"
             >
+              <Link href={`/hotels/${hotel.slug}`} className="flex flex-col h-full">
               {/* Image — fixed aspect ratio */}
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
@@ -147,16 +147,12 @@ export function FeaturedHotels() {
                       <span className="text-xs font-normal text-gray-400">/night</span>
                     </p>
                   </div>
-                  <a
-                    href={getWhatsAppUrl(hotelBookingMessage({ hotelName: hotel.name, price: hotel.pricePerNight }))}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200"
-                  >
-                    Book Now
-                  </a>
+                  <span className="px-4 py-2 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-xl text-xs font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200">
+                    View Details
+                  </span>
                 </div>
               </div>
+              </Link>
             </motion.div>
           ))}
         </div>

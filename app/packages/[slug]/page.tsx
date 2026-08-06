@@ -1,19 +1,19 @@
-import type { Metadata } from "next";
+ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { packages } from "@/lib/data/packages";
 import { formatPrice } from "@/lib/utils";
-import { Star, Clock, Check, ArrowLeft } from "lucide-react";
+import { Star, Clock, Check, ArrowLeft, X, Hotel, Car, Utensils, MapPin, HelpCircle } from "lucide-react";
 import { getWhatsAppUrl, packageBookingMessage } from "@/lib/whatsapp";
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = await params;
-  const pkg = packages.find((p) => p.id === Number(id));
+  const { slug } = await params;
+  const pkg = packages.find((p) => p.slug === slug);
   if (!pkg) return { title: "Package Not Found" };
   return {
     title: `${pkg.title} — Varanasi Tour Package`,
@@ -22,12 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  return packages.map((p) => ({ id: String(p.id) }));
+  return packages.map((p) => ({ slug: p.slug }));
 }
 
 export default async function PackageDetailPage({ params }: Props) {
-  const { id } = await params;
-  const pkg = packages.find((p) => p.id === Number(id));
+  const { slug } = await params;
+  const pkg = packages.find((p) => p.slug === slug);
   if (!pkg) notFound();
 
   const discount = Math.round(((pkg.originalPrice - pkg.price) / pkg.originalPrice) * 100);
@@ -56,10 +56,40 @@ export default async function PackageDetailPage({ params }: Props) {
               </div>
             </div>
 
+            {/* Gallery */}
+            <div className="mb-6">
+              <h2 className="font-semibold text-gray-900 dark:text-white mb-4">Photo Gallery</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {pkg.gallery.map((img, i) => (
+                  <div key={i} className="relative h-32 rounded-xl overflow-hidden">
+                    <Image src={img} alt={`${pkg.title} photo ${i + 1}`} fill className="object-cover hover:scale-110 transition-transform duration-500" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Overview */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-4 border border-gray-100 dark:border-gray-700">
               <h2 className="font-semibold text-gray-900 dark:text-white mb-3">Package Overview</h2>
-              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{pkg.subtitle}</p>
+              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{pkg.description}</p>
+            </div>
+
+            {/* Itinerary */}
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-4 border border-gray-100 dark:border-gray-700">
+              <h2 className="font-semibold text-gray-900 dark:text-white mb-4">Day-wise Itinerary</h2>
+              <div className="space-y-4">
+                {pkg.itinerary.map((item) => (
+                  <div key={item.day} className="flex gap-4">
+                    <div className="shrink-0 w-16 text-center">
+                      <span className="inline-block px-2 py-1 bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400 text-xs font-bold rounded-lg">{item.day}</span>
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">{item.title}</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Highlights */}
@@ -74,16 +104,79 @@ export default async function PackageDetailPage({ params }: Props) {
               </ul>
             </div>
 
-            {/* Services */}
+            {/* Included / Excluded */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
+                <h2 className="font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <Check size={16} className="text-green-500" /> Included
+                </h2>
+                <ul className="space-y-2">
+                  {pkg.included.map((item) => (
+                    <li key={item} className="flex items-center gap-2.5 text-sm text-gray-600 dark:text-gray-400">
+                      <Check size={14} className="text-green-500 shrink-0" /> {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
+                <h2 className="font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <X size={16} className="text-red-500" /> Excluded
+                </h2>
+                <ul className="space-y-2">
+                  {pkg.excluded.map((item) => (
+                    <li key={item} className="flex items-center gap-2.5 text-sm text-gray-600 dark:text-gray-400">
+                      <X size={14} className="text-red-500 shrink-0" /> {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Hotel & Transport Info */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
+                <h2 className="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                  <Hotel size={16} className="text-amber-500" /> Hotel Information
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{pkg.hotelInfo}</p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
+                <h2 className="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                  <Car size={16} className="text-amber-500" /> Transport Information
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{pkg.transportInfo}</p>
+              </div>
+            </div>
+
+            {/* Meal Plan & Pickup */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
+                <h2 className="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                  <Utensils size={16} className="text-amber-500" /> Meal Plan
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{pkg.mealPlan}</p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
+                <h2 className="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                  <MapPin size={16} className="text-amber-500" /> Pickup & Drop
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{pkg.pickupDrop}</p>
+              </div>
+            </div>
+
+            {/* FAQ */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
-              <h2 className="font-semibold text-gray-900 dark:text-white mb-4">Includes</h2>
-              <ul className="space-y-2">
-                {pkg.services.map((item) => (
-                  <li key={item} className="flex items-center gap-2.5 text-sm text-gray-600 dark:text-gray-400">
-                    <Check size={14} className="text-green-500 shrink-0" /> {item}
-                  </li>
+              <h2 className="font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <HelpCircle size={16} className="text-amber-500" /> Frequently Asked Questions
+              </h2>
+              <div className="space-y-4">
+                {pkg.faqs.map((faq) => (
+                  <div key={faq.question} className="p-4 bg-gray-50 dark:bg-gray-900/40 rounded-xl border border-gray-100 dark:border-gray-700">
+                    <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">{faq.question}</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{faq.answer}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
 

@@ -4,16 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { boatRides } from "@/lib/data/boats";
 import { formatPrice } from "@/lib/utils";
-import { Clock, Check, ArrowLeft } from "lucide-react";
+import { Clock, Check, ArrowLeft, Users, MapPin, ShieldCheck, Star } from "lucide-react";
 import { getWhatsAppUrl, boatBookingMessage } from "@/lib/whatsapp";
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = await params;
-  const boat = boatRides.find((b) => b.id === Number(id));
+  const { slug } = await params;
+  const boat = boatRides.find((b) => b.slug === slug);
   if (!boat) return { title: "Boat Not Found" };
   return {
     title: `${boat.title} — Ganga Boat Ride Varanasi`,
@@ -22,12 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  return boatRides.map((b) => ({ id: String(b.id) }));
+  return boatRides.map((b) => ({ slug: b.slug }));
 }
 
 export default async function BoatDetailPage({ params }: Props) {
-  const { id } = await params;
-  const boat = boatRides.find((b) => b.id === Number(id));
+  const { slug } = await params;
+  const boat = boatRides.find((b) => b.slug === slug);
   if (!boat) notFound();
 
   return (
@@ -39,6 +39,7 @@ export default async function BoatDetailPage({ params }: Props) {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
+            {/* Hero */}
             <div className="relative h-80 sm:h-[420px] rounded-3xl overflow-hidden mb-6">
               <Image
                 src={boat.image}
@@ -55,32 +56,68 @@ export default async function BoatDetailPage({ params }: Props) {
                 <h1 className="font-serif text-3xl font-bold text-white mb-2">{boat.title}</h1>
                 <div className="flex items-center gap-4 text-white/80 text-sm">
                   <span className="flex items-center gap-1"><Clock size={14} />{boat.timing}</span>
+                  <span className="flex items-center gap-1"><Users size={14} />{boat.capacity}</span>
                 </div>
               </div>
             </div>
 
+            {/* Gallery */}
+            <div className="mb-6">
+              <h2 className="font-semibold text-white mb-4">Photo Gallery</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {boat.gallery.map((img, i) => (
+                  <div key={i} className="relative h-32 rounded-xl overflow-hidden">
+                    <Image src={img} alt={`${boat.title} photo ${i + 1}`} fill className="object-cover hover:scale-110 transition-transform duration-500" />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Description */}
             <div className="bg-gray-800 rounded-2xl p-6 mb-4 border border-gray-700">
               <h2 className="font-semibold text-white mb-3">About This Ride</h2>
               <p className="text-gray-400 text-sm leading-relaxed">{boat.description}</p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
-              {[
-                { label: "Duration", value: boat.duration },
-                { label: "Timing", value: boat.timing },
-                { label: "Capacity", value: boat.capacity },
-              ].map((info) => (
-                <div key={info.label} className="bg-gray-800 rounded-xl p-4 border border-gray-700">
-                  <p className="text-gray-500 text-xs mb-1">{info.label}</p>
-                  <p className="text-amber-400 font-semibold text-sm capitalize">{info.value}</p>
-                </div>
-              ))}
+            {/* Highlights */}
+            <div className="bg-gray-800 rounded-2xl p-6 mb-4 border border-gray-700">
+              <h2 className="font-semibold text-white mb-4">Highlights</h2>
+              <ul className="space-y-2">
+                {boat.highlights.map((h) => (
+                  <li key={h} className="flex items-center gap-2.5 text-sm text-gray-400">
+                    <Star size={14} className="text-amber-400 shrink-0" /> {h}
+                  </li>
+                ))}
+              </ul>
             </div>
 
+            {/* Route */}
+            <div className="bg-gray-800 rounded-2xl p-6 mb-4 border border-gray-700">
+              <h2 className="font-semibold text-white mb-3 flex items-center gap-2">
+                <MapPin size={16} className="text-amber-400" /> Route Information
+              </h2>
+              <p className="text-gray-400 text-sm leading-relaxed">{boat.route}</p>
+            </div>
+
+            {/* Safety */}
+            <div className="bg-gray-800 rounded-2xl p-6 mb-4 border border-gray-700">
+              <h2 className="font-semibold text-white mb-4 flex items-center gap-2">
+                <ShieldCheck size={16} className="text-green-400" /> Safety Information
+              </h2>
+              <ul className="space-y-2">
+                {boat.safety.map((s) => (
+                  <li key={s} className="flex items-center gap-2.5 text-sm text-gray-400">
+                    <Check size={14} className="text-green-400 shrink-0" /> {s}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Included Services */}
             <div className="bg-gray-800 rounded-2xl p-6 border border-gray-700">
-              <h2 className="font-semibold text-white mb-4">What's Included</h2>
+              <h2 className="font-semibold text-white mb-4">Included Services</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {boat.features.map((item) => (
+                {boat.includedServices.map((item) => (
                   <div key={item} className="flex items-center gap-3 text-gray-400 text-sm">
                     <Check size={15} className="text-green-400 shrink-0" />
                     {item}
