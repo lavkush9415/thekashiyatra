@@ -190,20 +190,6 @@ export function Navbar() {
                 <Heart size={18} />
               </Link>
 
-              {/* <Link
-                href="/my-bookings"
-                className={cn(
-                  "p-2 rounded-full transition-all duration-200",
-                  isScrolled
-                    ? "text-gray-600 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-gray-800 hover:text-[#FF9933]"
-                    : "text-white/80 hover:text-white hover:bg-white/10"
-                )}
-                aria-label="My Bookings"
-                title="My Bookings"
-              >
-                <CalendarCheck size={18} />
-              </Link> */}
-
               {mounted && (
                 <button
                   onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
