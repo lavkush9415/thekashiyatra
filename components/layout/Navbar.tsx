@@ -190,7 +190,7 @@ export function Navbar() {
                 <Heart size={18} />
               </Link>
 
-              <Link
+              {/* <Link
                 href="/my-bookings"
                 className={cn(
                   "p-2 rounded-full transition-all duration-200",
@@ -202,7 +202,7 @@ export function Navbar() {
                 title="My Bookings"
               >
                 <CalendarCheck size={18} />
-              </Link>
+              </Link> */}
 
               {mounted && (
                 <button
