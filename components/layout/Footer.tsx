@@ -48,7 +48,13 @@ const legalLinks = [
 ];
 
 const socialLinks = [
-  { icon: InstagramIcon, href: "https://instagram.com", label: "Instagram", color: "hover:text-pink-500" },
+  {
+    icon: InstagramIcon,
+    href: "https://www.instagram.com/the_kashi_yatra/",
+    label: "Instagram",
+    color: "hover:text-pink-500"
+  },
+
   { icon: FacebookIcon, href: "https://facebook.com", label: "Facebook", color: "hover:text-blue-500" },
   { icon: YoutubeIcon, href: "https://youtube.com", label: "YouTube", color: "hover:text-red-500" },
   { icon: TwitterXIcon, href: "https://twitter.com", label: "X (Twitter)", color: "hover:text-sky-400" },
