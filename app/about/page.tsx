@@ -113,6 +113,7 @@ export default function AboutPage() {
   alt={member.name}
   fill
   sizes="96px"
+   priority
   className="object-cover"
 />
               </div>

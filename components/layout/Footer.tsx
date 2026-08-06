@@ -104,17 +104,17 @@ export function Footer() {
               Your trusted companion for spiritual travel in Varanasi. We curate premium pilgrimage experiences that blend ancient traditions with modern comfort.
             </p>
             <div className="space-y-3">
-              <a href="tel:+919876543210" className="flex items-center gap-3 text-sm hover:text-amber-400 transition-colors">
+              <a href="tel:+919838043996" className="flex items-center gap-3 text-sm hover:text-amber-400 transition-colors">
                 <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
                   <Phone size={14} className="text-amber-500" />
                 </div>
-                +91 98765 43210
+                +91 9838043996
               </a>
-              <a href="mailto:info@thekashiyatra.com" className="flex items-center gap-3 text-sm hover:text-amber-400 transition-colors">
+              <a href="mailto:info.thekashiyatra@gmail.com" className="flex items-center gap-3 text-sm hover:text-amber-400 transition-colors">
                 <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
                   <Mail size={14} className="text-amber-500" />
                 </div>
-                info@thekashiyatra.com
+                info.thekashiyatra@gmail.com
               </a>
               <div className="flex items-center gap-3 text-sm">
                 <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">

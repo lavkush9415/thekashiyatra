@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [{ url: "/favicon.ico" }],
+    icon: [{ url: "/" }],
     apple: [{ url: "/apple-touch-icon.png" }],
   },
   verification: {
@@ -96,11 +96,11 @@ const jsonLd = {
   name: "TheKashiYatra",
   description: "Premium travel and pilgrimage booking service for Varanasi, India.",
   url: "https://thekashiyatra.com",
-  telephone: "+91-98765-43210",
+  telephone: "+91-9838043996",
   email: "info@thekashiyatra.com",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Near Kashi Vishwanath Temple, Godaulia",
+    streetAddress: "B3/260 Shivala, Varanasi, Uttar Pradesh 221001",
     addressLocality: "Varanasi",
     addressRegion: "Uttar Pradesh",
     postalCode: "221001",

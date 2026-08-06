@@ -116,7 +116,7 @@ export default function CabsPage() {
                     <Car size={15} /> View Details
                   </span>
                   <a
-                    href="tel:+919876543210"
+                    href="tel:+919838043996"
                     className="px-4 py-2.5 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 rounded-xl text-sm hover:border-amber-300 hover:text-amber-600 transition-colors flex items-center gap-1.5"
                   >
                     <Phone size={14} /> Call
@@ -142,8 +142,8 @@ export default function CabsPage() {
             >
               💬 WhatsApp Now
             </a>
-            <a href="tel:+919876543210" className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-all">
-              📞 +91 98765 43210
+            <a href="tel:+919838043996" className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-all">
+              📞 +91 9838043996
             </a>
           </div>
         </div>

@@ -98,7 +98,7 @@ export default function CancellationPage() {
             <li>Refund will be processed within 5–7 business days</li>
           </ol>
           <p className="mt-4 text-sm text-gray-500">
-            Need help? <Link href="/contact" className="text-amber-600 hover:underline">Contact us</Link> or WhatsApp at +91 98765 43210.
+            Need help? <Link href="/contact" className="text-amber-600 hover:underline">Contact us</Link> or WhatsApp at +91 9838043996.
           </p>
         </div>
       </div>

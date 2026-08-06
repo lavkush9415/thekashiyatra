@@ -41,19 +41,19 @@ export function ContactSection() {
               {
                 icon: Phone,
                 title: "Call / WhatsApp",
-                lines: ["+91 98765 43210", "+91 87654 32109"],
+                lines: ["+91 9838043996"],
                 color: "from-green-500 to-emerald-600",
               },
               {
                 icon: Mail,
                 title: "Email Us",
-                lines: ["info@thekashiyatra.com", "bookings@thekashiyatra.com"],
+                lines: ["info.thekashiyatra@gmail.com"],
                 color: "from-blue-500 to-indigo-600",
               },
               {
                 icon: MapPin,
                 title: "Office Address",
-                lines: ["Near Kashi Vishwanath Temple,", "Godaulia, Varanasi — 221001"],
+                lines: ["B3/260 Shivala, Varanasi, Uttar Pradesh 221001"],
                 color: "from-amber-500 to-orange-600",
               },
               {
@@ -150,7 +150,7 @@ export function ContactSection() {
                     type="tel"
                     value={form.phone}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    placeholder="+91 98765 43210"
+                    placeholder="+91 9838043996"
                     className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors placeholder-gray-400"
                   />
                 </div>
@@ -219,8 +219,8 @@ export function ContactSection() {
                   WhatsApp
                 </a>{" "}
                 ·{" "}
-                <a href="tel:+919876543210" className="text-amber-600 font-medium hover:underline">
-                  +91 98765 43210
+                <a href="tel:+919838043996" className="text-amber-600 font-medium hover:underline">
+                  +91 9838043996
                 </a>
               </p>
             </form>

@@ -322,10 +322,10 @@ export function Navbar() {
                 <div className="mt-8 p-4 bg-amber-50 dark:bg-gray-800 rounded-2xl">
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Need help?</p>
                   <a href="tel:+919876543210" className="flex items-center gap-2 text-[#8B4513] dark:text-amber-400 font-medium">
-                    <Phone size={15} /> +91 98765 43210
+                    <Phone size={15} /> +91 9838043996
                   </a>
-                  <a href="mailto:info@thekashiyatra.com" className="flex items-center gap-2 text-amber-600 text-sm mt-1">
-                    <MapPin size={13} /> info@thekashiyatra.com
+                  <a href="mailto:info.thekashiyatra@gmail.com" className="flex items-center gap-2 text-amber-600 text-sm mt-1">
+                    <MapPin size={13} /> info.thekashiyatra@gmail.com
                   </a>
                 </div>
               </div>
