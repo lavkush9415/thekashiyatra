@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sun, Moon, Menu, X, Search, Heart, Phone,
-  MapPin, ChevronDown, BookOpen, CalendarCheck
+  MapPin, ChevronDown,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getWhatsAppUrl, genericInquiryMessage } from "@/lib/whatsapp";
