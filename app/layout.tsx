@@ -9,6 +9,7 @@ import { LoadingScreen } from "@/components/ui/LoadingScreen";
 import { ScrollProgressBar, WhatsAppButton } from "@/components/ui/ScrollProgressBar";
 import { TrustBar } from "@/components/ui/TrustBar";
 import { CookieConsent } from "@/components/ui/CookieConsent";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -175,6 +176,7 @@ export default function RootLayout({
           </ToastProvider>
         </ThemeProvider>
       </body>
+      <GoogleAnalytics gaId="G-W78FQGESWV" />
     </html>
   );
 }
