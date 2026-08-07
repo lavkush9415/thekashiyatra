@@ -141,7 +141,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <script
+        {/* <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
@@ -160,7 +160,7 @@ export default function RootLayout({
               })();
             `,
           }}
-        />
+        /> */}
       </head>
       <body className={`${cormorant.variable} ${inter.variable} font-sans antialiased`}>
         <ThemeProvider>

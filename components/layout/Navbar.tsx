@@ -1,5 +1,6 @@
 "use client";
 
+
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
@@ -321,7 +322,7 @@ export function Navbar() {
                 {/* Contact info */}
                 <div className="mt-8 p-4 bg-amber-50 dark:bg-gray-800 rounded-2xl">
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Need help?</p>
-                  <a href="tel:+919876543210" className="flex items-center gap-2 text-[#8B4513] dark:text-amber-400 font-medium">
+                  <a href="tel:+919838043996" className="flex items-center gap-2 text-[#8B4513] dark:text-amber-400 font-medium">
                     <Phone size={15} /> +91 9838043996
                   </a>
                   <a href="mailto:info.thekashiyatra@gmail.com" className="flex items-center gap-2 text-amber-600 text-sm mt-1">

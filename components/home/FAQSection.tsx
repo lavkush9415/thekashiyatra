@@ -101,7 +101,7 @@ export function FAQSection() {
               💬 WhatsApp Us
             </a>
             <a
-              href="tel:+919876543210"
+              href="tel:+919838043996"
               className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-full text-sm font-semibold hover:shadow-lg transition-all"
             >
               📞 Call Now
