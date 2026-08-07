@@ -56,7 +56,7 @@ export const metadata: Metadata = {
       "Premium travel and pilgrimage booking for Varanasi. Hotels, Boat Rides, Temple Tours, Packages & more.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/favicon.png",
         width: 1200,
         height: 630,
         alt: "TheKashiYatra — Experience the Soul of Kashi",
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [{ url: "/" }],
+    icon: [{ url: "/favicon.png" }],
     apple: [{ url: "/apple-touch-icon.png" }],
   },
   verification: {
