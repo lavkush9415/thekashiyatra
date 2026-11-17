@@ -116,6 +116,12 @@ export function Footer() {
                 </div>
                 +91 9838043996
               </a>
+              <a href="tel:+919277414831" className="flex items-center gap-3 text-sm hover:text-amber-400 transition-colors">
+                <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
+                  <Phone size={14} className="text-amber-500" />
+                </div>
+                +91 92774 14831
+              </a>
               <a href="mailto:info.thekashiyatra@gmail.com" className="flex items-center gap-3 text-sm hover:text-amber-400 transition-colors">
                 <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
                   <Mail size={14} className="text-amber-500" />

@@ -111,15 +111,21 @@ export default function CabsPage() {
 
 
                 {/* Action buttons */}
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <span className="flex-1 py-2.5 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
                     <Car size={15} /> View Details
                   </span>
                   <a
                     href="tel:+919838043996"
-                    className="px-4 py-2.5 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 rounded-xl text-sm hover:border-amber-300 hover:text-amber-600 transition-colors flex items-center gap-1.5"
+                    className="px-3 py-2.5 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 rounded-xl text-xs sm:text-sm hover:border-amber-300 hover:text-amber-600 transition-colors flex items-center gap-1.5"
                   >
-                    <Phone size={14} /> Call
+                    <Phone size={14} /> +91 9838043996
+                  </a>
+                  <a
+                    href="tel:+919277414831"
+                    className="px-3 py-2.5 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 rounded-xl text-xs sm:text-sm hover:border-amber-300 hover:text-amber-600 transition-colors flex items-center gap-1.5"
+                  >
+                    <Phone size={14} /> +91 92774 14831
                   </a>
                 </div>
               </div>
@@ -144,6 +150,9 @@ export default function CabsPage() {
             </a>
             <a href="tel:+919838043996" className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-all">
               📞 +91 9838043996
+            </a>
+            <a href="tel:+919277414831" className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-all">
+              📞 +91 92774 14831
             </a>
           </div>
         </div>

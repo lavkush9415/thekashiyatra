@@ -104,7 +104,13 @@ export function FAQSection() {
               href="tel:+919838043996"
               className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-full text-sm font-semibold hover:shadow-lg transition-all"
             >
-              📞 Call Now
+              📞 +91 9838043996
+            </a>
+            <a
+              href="tel:+919277414831"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-[#8B4513] to-[#FF9933] text-white rounded-full text-sm font-semibold hover:shadow-lg transition-all"
+            >
+              📞 +91 92774 14831
             </a>
           </div>
         </motion.div>

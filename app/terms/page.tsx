@@ -57,7 +57,14 @@ export default function TermsPage() {
           ].map((section) => (
             <div key={section.title} className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
               <h2 className="font-semibold text-gray-900 dark:text-white text-lg mb-3">{section.title}</h2>
-              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{section.content}</p>
+              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                {section.title === "9. Contact" ? (
+                  <>
+                    {section.content} For travel bookings, call{" "}
+                    <a href="tel:+919277414831" className="text-amber-600 hover:underline">+91 92774 14831</a>.
+                  </>
+                ) : section.content}
+              </p>
             </div>
           ))}
         </div>

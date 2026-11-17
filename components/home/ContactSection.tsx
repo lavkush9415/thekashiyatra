@@ -41,7 +41,7 @@ export function ContactSection() {
               {
                 icon: Phone,
                 title: "Call / WhatsApp",
-                lines: ["+91 9838043996"],
+                lines: ["+91 9838043996", "+91 92774 14831"],
                 color: "from-green-500 to-emerald-600",
               },
               {
@@ -76,7 +76,17 @@ export function ContactSection() {
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">{info.title}</h4>
                   {info.lines.map((line) => (
-                    <p key={line} className="text-gray-500 dark:text-gray-400 text-xs">{line}</p>
+                    info.title === "Call / WhatsApp" ? (
+                      <a
+                        key={line}
+                        href={`tel:+${line.replace(/\D/g, "")}`}
+                        className="block text-gray-500 dark:text-gray-400 text-xs hover:text-amber-600 dark:hover:text-amber-400"
+                      >
+                        {line}
+                      </a>
+                    ) : (
+                      <p key={line} className="text-gray-500 dark:text-gray-400 text-xs">{line}</p>
+                    )
                   ))}
                 </div>
               </motion.div>
@@ -221,6 +231,10 @@ export function ContactSection() {
                 ·{" "}
                 <a href="tel:+919838043996" className="text-amber-600 font-medium hover:underline">
                   +91 9838043996
+                </a>
+                {" "}·{" "}
+                <a href="tel:+919277414831" className="text-amber-600 font-medium hover:underline">
+                  +91 92774 14831
                 </a>
               </p>
             </form>

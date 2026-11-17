@@ -97,7 +97,7 @@ const jsonLd = {
   name: "TheKashiYatra",
   description: "Premium travel and pilgrimage booking service for Varanasi, India.",
   url: "https://thekashiyatra.com",
-  telephone: "+91-9838043996",
+  telephone: ["+91-9838043996", "+91-9277414831"],
   email: "info@thekashiyatra.com",
   address: {
     "@type": "PostalAddress",

@@ -207,6 +207,21 @@ export function Navbar() {
               )}
 
               <a
+                href="tel:+919277414831"
+                aria-label="Call +91 92774 14831"
+                title="Call +91 92774 14831"
+                className={cn(
+                  "flex items-center gap-2 p-2 xl:px-3 xl:py-2 rounded-full text-sm font-medium transition-colors",
+                  isScrolled
+                    ? "text-[#8B4513] dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-gray-800"
+                    : "text-white hover:bg-white/10"
+                )}
+              >
+                <Phone size={15} />
+                <span className="hidden xl:inline">+91 92774 14831</span>
+              </a>
+
+              <a
                 href={getWhatsAppUrl(genericInquiryMessage("your travel packages and services"))}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -324,6 +339,9 @@ export function Navbar() {
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Need help?</p>
                   <a href="tel:+919838043996" className="flex items-center gap-2 text-[#8B4513] dark:text-amber-400 font-medium">
                     <Phone size={15} /> +91 9838043996
+                  </a>
+                  <a href="tel:+919277414831" className="flex items-center gap-2 text-[#8B4513] dark:text-amber-400 font-medium mt-1">
+                    <Phone size={15} /> +91 92774 14831
                   </a>
                   <a href="mailto:info.thekashiyatra@gmail.com" className="flex items-center gap-2 text-amber-600 text-sm mt-1">
                     <MapPin size={13} /> info.thekashiyatra@gmail.com
